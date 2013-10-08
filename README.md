@@ -19,15 +19,15 @@ Add your name here!
 
 ####Ideas for function:
  - Listings
-   - Listing categories:
-    - Free
-    - Textbooks
-     - categorize by subject options
-    - Furniture
-    - Other
+  - Listing categories:
+     - Free
+     - Textbooks
+         - categorize by subject options
+     - Furniture
+     - Other
    - Features:
-    - image upload
-    - report spam
+     - image upload
+     - report spam
 
 ##Components:
 ####Backend
@@ -35,10 +35,10 @@ Add your name here!
   - store entries
   - store images?
   - implementation options:
-   - redis
-   - mysql
+     - redis
+     - mysql
  - Authentication
-  - tap into [Exeter Connect authentication webservice](https://connect.exeter.edu/_vti_bin/authentication.asmx)
+    - tap into [Exeter Connect authentication webservice](https://connect.exeter.edu/_vti_bin/authentication.asmx)
  - Web Server
 
 ###Frontend
