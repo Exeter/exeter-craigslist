@@ -5,6 +5,7 @@ Classifieds for the PEA community.
 ##Team:
 Add your name here!
  - Sean Lee (freshdried)
+ - Oishi Banerjee (oishib)
 
 ##Ideas:
 ####Potential design directions
