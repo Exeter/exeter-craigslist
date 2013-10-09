@@ -6,6 +6,7 @@ Classifieds for the PEA community.
 Add your name here!
  - Sean Lee (freshdried)
  - Oishi Banerjee (oishib)
+ - Lizzie Wei (lizziew) 
 
 ##Ideas:
 ####Potential design directions
@@ -23,6 +24,8 @@ Add your name here!
      - Free
      - Textbooks
          - categorize by subject options
+     - Food
+     - Electronics (Working laptops, etc) 
      - Furniture
      - Other
    - Features:
