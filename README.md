@@ -15,8 +15,7 @@ Add your name here!
 ####Ideas for technical stuff:
  - Authentication w/ existing username and password
  - Responsive UI (versus dedicated mobile app)
- - static pages (frontend html generation)
-  - AJAX json driven content population/submition
+ - AJAX json driven content population/submition
 
 ####Ideas for function:
  - Listings
