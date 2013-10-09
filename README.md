@@ -38,7 +38,7 @@ Add your name here!
      - redis
      - mysql
  - Authentication
-    - tap into [Exeter Connect authentication webservice](https://connect.exeter.edu/_vti_bin/authentication.asmx)
+    - tap into pop3 webmail server for authentication
  - Web Server
 
 ###Frontend
