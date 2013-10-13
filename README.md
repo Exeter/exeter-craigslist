@@ -6,7 +6,8 @@ Classifieds for the PEA community.
 Add your name here!
  - Sean Lee (freshdried)
  - Oishi Banerjee (oishib)
- - Lizzie Wei (lizziew) 
+ - Lizzie Wei (lizziew)
+ - Jerry Anunrojwong (jerryinfinity)
 
 ##Ideas:
 ####Potential design directions
@@ -24,10 +25,14 @@ Add your name here!
      - Free
      - Textbooks
          - categorize by subject options
-     - Food
+     - Food (Do you really think people will sell food that much?)
      - Electronics (Working laptops, etc) 
      - Furniture
-     - Other
+     - Others 
+     ** I think "Free" should not be a separate category because if it is then it will be very random.
+        We should have a special search button for "free" (and let users indicate if their items are free)
+    Clothes?
+
    - Features:
      - image upload
      - report spam
@@ -51,6 +56,8 @@ Add your name here!
   - option image upload
   - description
   - categorization
+  - 
+ 
 
 
 ##TODO:
@@ -59,3 +66,5 @@ Add your name here!
  - think of catchy, not too corny list
   - exeter-list
   - lionslist
+
+Jerry asks: Apart from Python, what should I study (at least for this project)? Database Structure? PHP/MySQL? HTML? 
