@@ -10,7 +10,7 @@ body {
 	position: relative;
 }
 nav {
-	padding-top: 5px;
+	padding-top: 20px;
 	margin-bottom: 20px;
 }
 nav form{
@@ -32,7 +32,11 @@ nav h1 {
 	bottom: 0px;
 	right: 0px;
 	position: absolute;
+	font-size: 12px;
 }
 #about a{
-	color: inherit;
+	//color: inherit;
+}
+h1, a {
+	color: #a50430;
 }
