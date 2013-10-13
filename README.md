@@ -56,6 +56,8 @@ Add your name here!
 ##TODO:
  - brainstorm
  - Split up roles
+ - How are postings sorted?
+  - Sean suggests some thing like [this](http://www.craigslist.org/about/help/repost)
  - think of catchy, not too corny list
   - exeter-list
   - lionslist
