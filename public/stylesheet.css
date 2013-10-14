@@ -3,21 +3,33 @@ html {
 }
 body {
 	font-family: sans-serif;
-	margin: 0% 5%;
-	width: 90%;
+	margin: 0% 10%;
+	width: 80%;
 	min-height: 100%;
 
 	position: relative;
 }
 nav {
 	padding-top: 20px;
-	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
-nav form{
+#account_stuff, #login {
 	display: inline;
 	float: right;
 	margin-top: 10px;
 }
+#login i {
+	display: none;
+}
+
+#account_stuff {
+	display: none;
+}
+nav li{
+	display: inline;
+	margin: 0% 10px;
+}
+
 
 nav h1 {
 	font-family: 'times new roman', times, serif;
@@ -34,9 +46,7 @@ nav h1 {
 	position: absolute;
 	font-size: 12px;
 }
-#about a{
-	//color: inherit;
-}
-h1, a {
+
+h1, a, li{
 	color: #a50430;
 }

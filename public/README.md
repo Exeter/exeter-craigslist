@@ -1,4 +1,4 @@
 ##TODO:
- - Greyish bg?
- - implement javascript frontend library
+ - rename "post" to "listing"
+ - implement basic listing functionality
 
