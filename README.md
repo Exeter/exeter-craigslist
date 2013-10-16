@@ -66,5 +66,3 @@ Add your name here!
  - think of catchy, not too corny list
   - exeter-list
   - lionslist
-
-Jerry asks: Apart from Python, what should I study (at least for this project)? Database Structure? PHP/MySQL? HTML? 
