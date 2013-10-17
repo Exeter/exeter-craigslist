@@ -7,7 +7,6 @@ Add your name here!
  - Sean Lee (freshdried)
  - Oishi Banerjee (oishib)
  - Lizzie Wei (lizziew) 
- - Alec Sun (asun1)
 
 ##Ideas:
 ####Potential design directions
