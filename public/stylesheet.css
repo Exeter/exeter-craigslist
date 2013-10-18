@@ -18,13 +18,7 @@ nav {
 	float: right;
 	margin-top: 10px;
 }
-#login i {
-	display: none;
-}
 
-#account_stuff {
-	display: none;
-}
 nav li{
 	display: inline;
 	margin: 0% 10px;
