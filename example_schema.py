@@ -87,7 +87,7 @@ class Connection:
     if category is not None:
       self.c.execute("SELECT * FROM posts WHERE refresh>? AND unlink!=1 ORDER BY refresh DESC") 
     else:
-      self.c.execute("SELECT * FROM posts WHERE refersh>? AND unlink!= AND category=? ORDER BY refresh DESC", (category,))
+      self.c.execute("SELECT * FROM posts WHERE refresh>? AND unlink!= AND category=? ORDER BY refresh DESC", (category,))
 
     if content_search is not None:
       # If we're asked to execute a search, do so
