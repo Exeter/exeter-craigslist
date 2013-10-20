@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+
+    <script src="third-party/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/cookies.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="app.js" type="text/javascript" charset="utf-8"></script>
+  </head> 
+
+  <script type="text/javascript">
+    var maxLength=300;
+    function limitChar(el) {
+    if (el.value.length > maxLength) return false;
+    return true;
+    }
+    function charLen(el) {
+    var charCount = document.getElementById('charCount');
+    if (el.value.length > maxLength) el.value = el.value.substring(0,maxLength);
+    if (charCount) charCount.innerHTML = maxLength - el.value.length;
+    return true;
+    }
+  </script>
+  <body>
+
+    <h1>add post</h1>
+
+
+    <form id = "add-post" action="" method="post">
+
+      <p> Title </p> 
+
+      <div style="clear:left;">
+        <input type="text" id="title" placeholder="Add title" />
+      </div>
+
+      <HR size="2" color="gray">
+
+      <div style="float:left; padding-right:30px;">
+        <p> Select Category </p>
+        <select>
+          <option value="Textbooks">Textbooks</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Supplies">Supplies</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div style="float:left;">
+        <p> Select Price Range </p> 
+        <select>
+          <option value="0">Free</option>
+          <option value="10">$0 to $10</option>
+          <option value="30">$10 to $30</option>
+          <option value="50">$30 to $50</option>
+          <option value="100">$50 to $100</option>
+          <option value="200">over $100</option>
+        </select>
+      </div>
+
+      <div style="clear:left; padding-top:2px;">
+        <HR size="2" color="gray">
+      </div>
+
+      <div style="clear:left;">
+        <p> Upload Picture </p>
+        <input type="hidden" name="MAX_FILE_SIZE" value="500" />
+        <input type="file" name="uploadField" />
+      </div>
+
+      <div style="clear:left; padding-top:2px;">
+        <HR size="2" color="gray">
+      </div>
+
+      <div style="clear:left;">
+        <p> Add Description </p> 
+        <textarea name="limitedtextarea" rows="5" cols = "50"
+                  onKeyPress="return limitChar(this)"
+                  onKeyUp="return charLen(this)"></textarea>
+        <p>You have <span id="charCount">300</span> characters left.</p>
+      </div> 
+
+      <div style="clear:left;">
+        <HR size="2" color="gray">
+      </div>
+
+      <div style = "clear:left;">
+        <div style="padding-right:5px; float:left;">
+          <input type="checkbox" name="legal" value="checked">
+        </div>
+
+        <div style="float:left;">
+          <a href="http://www.exeter.edu/documents/ebook.pdf" target="_blank">I'm not being stupid</a>  
+        </div>        
+
+        <div style="clear:left; padding-top:5px;">
+          <input type="submit" value="Post">
+        </div> 
+      </div> 
+    </form>
+
+  </body>
+</html> 
