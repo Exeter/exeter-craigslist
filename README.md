@@ -31,6 +31,7 @@ Add your name here!
      - Others 
      ** I think "Free" should not be a separate category because if it is then it will be very random.
         We should have a special search button for "free" (and let users indicate if their items are free)
+    ^^ agreed - for the "add a listing" page, I put "free" under "price ranges" 
     Clothes?
 
    - Features:
@@ -54,9 +55,9 @@ Add your name here!
  - Results page
  - Posting page
   - option image upload
-  - description
+  - description (word limit of 300 characters, hashtags for search) 
   - categorization
-  - 
+  - terms/conditions (aka ebook) 
  
 
 
