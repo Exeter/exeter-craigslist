@@ -4,7 +4,7 @@
     
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>See Post</title>
+        <title>see post</title>
             <style>
                 .attr_heading{
                     color: #a50430;
@@ -15,55 +15,61 @@
                     background-color: #a50430;
                     width:200px;
                     height:200px;
-                    margin:5px;
                     float:left;
+			margin-bottom:15px;
                     border:#a50430 2px solid;
+			margin-right:10%;
                 }
                 #content{
-                    width:640px;
+                    width:80%;
                     margin-top:10px;
-                    margin-left:auto;
-                    margin-right:auto;
+                    margin-left:15%;
                     }
                 body{
-                     font-style:sans-serif;  
-
-                }                
+                     font-family:sans-serif;
+		
+                }
                 
                 #post_date{
                     font-size:10pt;
                     color:gray;
-                    margin:10px;
                     clear:both;
                 }
                 
                 #description{
-                    width:400px;
+		    
                     clear:both;
                 }
                 
                 
                 .attribute{
-                    clear:right;
-                    float:left;
-                    width:400px;
-                    margin:10px;
+                    clear:both;
+		    margin-bottom:15px;
+				    
                 }
                 h1{
+		    margin-left:2%;
                     color: #a50430;
                 }
+		#attr_stack{
+			float:left;
+                    
+
+		}
                 </style>
-    </head> 
+    </head>
     
     
     <body onload = "fill()">
-        <h1>See Post</h1>
+        <h1>see post</h1>
         <div id = "content">
-                <div class = "attribute"><span class = "attr_heading">Title </span><span id = "title">N/A</span></div>
-                <div class = "attribute"><span class = "attr_heading">Posted By </span><span id = "poster_name">Withheld (Sign in to See Poster)</span></div>
-                <div class = "attribute"><span class = "attr_heading">Category </span><span id = "category">N/A</span></div>
-                <div class = "attribute"><span class = "attr_heading">Suggested Price </span><span id = "price">N/A</span></div>
-                <div class = "attribute"><span class = "attr_heading">Description </span><div id = "description">N/A</div></div>
+		<div id = "attr_stack">
+                <div class = "attribute"><span id = "title">N/A</span></div>
+                <div class = "attribute"><span class = "attr_heading">posted by </span><span id = "poster_name">Withheld (Sign in to See Poster)</span></div>
+                <div class = "attribute"><span class = "attr_heading">category </span><span id = "category">N/A</span></div>
+                <div class = "attribute"><span class = "attr_heading">suggested price </span><span id = "price">N/A</span></div>
+		</div>
+                <div class = "attribute"><span class = "attr_heading">description </span><div id = "description">N/A</div></div>
             <div id = "post_date">Posted on</div>
 
 
@@ -83,7 +89,7 @@
             fill_category("Miscellaneous");
             fill_descrip("abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz");
             //TODO: fill_image is only called if there is an image available
-            fill_image("1 copy.jpg");
+            //fill_image("1 copy.jpg");
             fill_price("$20-25");
             fill_date("10/12/13");
             fill_poster("Mr. Exonian");
@@ -111,7 +117,7 @@
         function fill_date(newDate){
             document.getElementById("post_date").innerHTML+= " " +newDate;
         }
-        //TODO: Only call 
+        //TODO: Only call
     </script>
     </body>
 </html>
