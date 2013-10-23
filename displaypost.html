@@ -1,47 +1,72 @@
 <!DOCTYPE html>
+
 <html>
     
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>View Post</title>
+        <title>See Post</title>
             <style>
                 .attr_heading{
                     color: #a50430;
                     font-weight:bold;
-                    margin:5px;
-                    width:30px;
+                    max-width:200px;
                 }
                 #item_pic{
                     background-color: #a50430;
-                    float:left;
                     width:200px;
                     height:200px;
                     margin:5px;
-                    float:right;
-                    
+                    float:left;
+                    border:#a50430 2px solid;
                 }
                 #content{
                     width:640px;
                     margin-top:10px;
                     margin-left:auto;
                     margin-right:auto;
+                    }
+                body{
+                     font-style:sans-serif;  
+
+                }                
+                
+                #post_date{
+                    font-size:10pt;
+                    color:gray;
+                    margin:10px;
+                    clear:both;
                 }
                 
-                .attribute{
+                #description{
                     width:400px;
-                    margin:5px;
+                    clear:both;
+                }
+                
+                
+                .attribute{
+                    clear:right;
+                    float:left;
+                    width:400px;
+                    margin:10px;
+                }
+                h1{
+                    color: #a50430;
                 }
                 </style>
     </head> 
     
     
     <body onload = "fill()">
+        <h1>See Post</h1>
         <div id = "content">
-            <img id = "item_pic" alt ="Item Picture">
-            <div class = "attr_heading">Title </div>
-                <div id = "title" class ="attribute">N/A</div>
-            <div class = "attr_heading">Category </div><div id = "category" class ="attribute">N/A</div>
-            <div class = "attr_heading">Description </div><div id = "description" class ="attribute">N/A</div>
+                <div class = "attribute"><span class = "attr_heading">Title </span><span id = "title">N/A</span></div>
+                <div class = "attribute"><span class = "attr_heading">Posted By </span><span id = "poster_name">Withheld (Sign in to See Poster)</span></div>
+                <div class = "attribute"><span class = "attr_heading">Category </span><span id = "category">N/A</span></div>
+                <div class = "attribute"><span class = "attr_heading">Suggested Price </span><span id = "price">N/A</span></div>
+                <div class = "attribute"><span class = "attr_heading">Description </span><div id = "description">N/A</div></div>
+            <div id = "post_date">Posted on</div>
+
+
         </div>
     
     
@@ -57,10 +82,18 @@
             fill_title("My Title");
             fill_category("Miscellaneous");
             fill_descrip("abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz");
+            //TODO: fill_image is only called if there is an image available
             fill_image("1 copy.jpg");
+            fill_price("$20-25");
+            fill_date("10/12/13");
+            fill_poster("Mr. Exonian");
         }
         function fill_title (newTitle){
             document.getElementById ("title").innerHTML=newTitle;
+        }
+        
+        function fill_poster (newName){
+            document.getElementById ("poster_name").innerHTML=newName;
         }
         function fill_category (newCat){
             document.getElementById ("category").innerHTML=newCat;
@@ -69,9 +102,16 @@
             document.getElementById ("description").innerHTML=newDesc;
         }
         function fill_image (newImageSrc){
-            alert(newImageSrc);
+            document.getElementById("content").innerHTML= "<img id = 'item_pic' alt ='Item Picture'>"+document.getElementById("content").innerHTML;
             document.getElementById("item_pic").src=newImageSrc;
         }
+        function fill_price (newPrice){
+            document.getElementById("price").src=newPrice;
+        }
+        function fill_date(newDate){
+            document.getElementById("post_date").innerHTML+= " " +newDate;
+        }
+        //TODO: Only call 
     </script>
     </body>
 </html>
