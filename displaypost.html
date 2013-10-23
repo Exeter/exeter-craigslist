@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>View Post</title>
+            <style>
+                .attr_heading{
+                    color: #a50430;
+                    font-weight:bold;
+                    margin:5px;
+                    width:30px;
+                }
+                #item_pic{
+                    background-color: #a50430;
+                    float:left;
+                    width:200px;
+                    height:200px;
+                    margin:5px;
+                    float:right;
+                    
+                }
+                #content{
+                    width:640px;
+                    margin-top:10px;
+                    margin-left:auto;
+                    margin-right:auto;
+                }
+                
+                .attribute{
+                    width:400px;
+                    margin:5px;
+                }
+                </style>
+    </head> 
+    
+    
+    <body onload = "fill()">
+        <div id = "content">
+            <img id = "item_pic" alt ="Item Picture">
+            <div class = "attr_heading">Title </div>
+                <div id = "title" class ="attribute">N/A</div>
+            <div class = "attr_heading">Category </div><div id = "category" class ="attribute">N/A</div>
+            <div class = "attr_heading">Description </div><div id = "description" class ="attribute">N/A</div>
+        </div>
+    
+    
+    <script src="third-party/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/cookies.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="third-party/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        //fill in item's information
+        function fill(){
+            //TODO: get actual post data
+            fill_title("My Title");
+            fill_category("Miscellaneous");
+            fill_descrip("abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz");
+            fill_image("1 copy.jpg");
+        }
+        function fill_title (newTitle){
+            document.getElementById ("title").innerHTML=newTitle;
+        }
+        function fill_category (newCat){
+            document.getElementById ("category").innerHTML=newCat;
+        }
+        function fill_descrip (newDesc){
+            document.getElementById ("description").innerHTML=newDesc;
+        }
+        function fill_image (newImageSrc){
+            alert(newImageSrc);
+            document.getElementById("item_pic").src=newImageSrc;
+        }
+    </script>
+    </body>
+</html>
