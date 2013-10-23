@@ -4,7 +4,7 @@
     
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>View Post</title>
+        <title>See Post</title>
             <style>
                 .attr_heading{
                     color: #a50430;
@@ -24,8 +24,11 @@
                     margin-top:10px;
                     margin-left:auto;
                     margin-right:auto;
-                }
-                
+                    }
+                body{
+                     font-style:sans-serif;  
+
+                }                
                 
                 #post_date{
                     font-size:10pt;
@@ -46,17 +49,20 @@
                     width:400px;
                     margin:10px;
                 }
+                h1{
+                    color: #a50430;
+                }
                 </style>
     </head> 
     
     
     <body onload = "fill()">
+        <h1>See Post</h1>
         <div id = "content">
                 <div class = "attribute"><span class = "attr_heading">Title </span><span id = "title">N/A</span></div>
                 <div class = "attribute"><span class = "attr_heading">Posted By </span><span id = "poster_name">Withheld (Sign in to See Poster)</span></div>
                 <div class = "attribute"><span class = "attr_heading">Category </span><span id = "category">N/A</span></div>
                 <div class = "attribute"><span class = "attr_heading">Suggested Price </span><span id = "price">N/A</span></div>
-                <div class = "attribute"><span class = "attr_heading">Hashtags </span><div id = "hashtags">N/A</div></div>
                 <div class = "attribute"><span class = "attr_heading">Description </span><div id = "description">N/A</div></div>
             <div id = "post_date">Posted on</div>
 
@@ -81,14 +87,11 @@
             fill_price("$20-25");
             fill_date("10/12/13");
             fill_poster("Mr. Exonian");
-            fill_tags("pretty, couch, red, seating, comfy, large, furniture");
         }
         function fill_title (newTitle){
             document.getElementById ("title").innerHTML=newTitle;
         }
-        function fill_tags (newHashTags){
-            document.getElementById ("hashtags").innerHTML=newHashTags;
-        }
+        
         function fill_poster (newName){
             document.getElementById ("poster_name").innerHTML=newName;
         }
