@@ -1,3 +1,7 @@
+/*
+ * Where do we verify authentication?
+ */
+
 var TESTING = {
 	get_auth_token: function(creds) {
 		console.log('getting session token from server...');
@@ -52,17 +56,13 @@ $(document).ready(function() {(function(MODE) {
 	});
 
 	var LoginView = Backbone.View.extend({
-		el: '#login-form',
+		el: '#account-area',
 		initialize: function() {
 			console.log("loginview initialized!");
-			if (!!(Cookies.get('ec_token'))){ //if token exists
-				var accountview = new AccountView();
-				accountview.render();
-			} else {
-			}
+			this.render();
 		},
 	    	events: {
-			"submit": "get_auth_token",
+			"submit #login-form": "get_auth_token",
 		},
 	    	get_auth_token: function(event) {
 			event.preventDefault();
@@ -72,17 +72,22 @@ $(document).ready(function() {(function(MODE) {
 			}
 			var success = MODE.get_auth_token(creds);
 			if (success) {
-				var accountview = new AccountView();
-				accountview.render();
+				this.toAccountView();
 			} else {
 				this.render_fail();
 			}
+		},
+		toAccountView: function() {
+			var accountview = new AccountView();
+		},
+		render: function() {
+			this.$el.html($("#login-template").html());
 		},
 	    	render_fail: (function() {
 			var failed = false;
 			return function() {
 				if (!failed) {
-					this.$el.prepend('<i>try again...<i>');
+					$("#login-form").prepend('<i>try again...');
 					failed = true;
 				}
 			}
@@ -90,9 +95,58 @@ $(document).ready(function() {(function(MODE) {
 	});
 
 	var AccountView = Backbone.View.extend({
+		el: '#account-area',
+		initialize: function() {
+			console.log('AccountView initialized');
+			this.render();
+		},
+		events: {
+			"click #logout": "logout",
+			"click #new-post": "new_post",
+			"click #my-posts": "my_posts"
+		},
+	    	logout: function() {
+			console.log("Logging out!");
+			Cookies.expire('ec_token');
+			location.reload();
+		},
+	    	new_post: function() {
+			console.log('new post!');
+			alert('new post!');
+			//initialize new_post view
+		},
+		my_posts: function() {
+			console.log('my posts...');
+			alert('my posts...');
+			//initialize my_posts view
+		},
+	    	render: function() {
+			console.log('Rendering AccountView');
+			this.$el.html($("#account-template").html());
+		}
 	});
-	var loginview = new LoginView();
+
+	var ContentView = Backbone.View.extend({
+		el: '#content',
+	    	initialize: function() {
+			console.log('ContentView initialized!');
+			this.render();
+		},
+	    	render: function() {
+			this.$el.html('This is just a test. Login with blank username.');
+		}
+		
+	});
 
 
-
+	//Main
+	var contentview = new ContentView();
+	var authenticated = (function() {
+		return !!(Cookies.get('ec_token'));
+	})();
+	if (authenticated){
+		var accountview = new AccountView();
+	} else {
+		var loginview = new LoginView();
+	}
 })(TESTING)});
