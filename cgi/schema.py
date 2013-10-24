@@ -70,7 +70,7 @@ class Connection:
 
     else:
       # Otherwise, create an empty user record and set its session key
-      self.c.execute("INSERT INTO users (email, sesskey) VALUES (?, ?, ?)", (email, sesskey))
+      self.c.execute("INSERT INTO users (email, sesskey) VALUES (?, ?)", (email, sesskey))
     
     # Commit this database change.
     self.conn.commit()
@@ -90,13 +90,13 @@ class Connection:
 
   def flag(self, email, post):
     # Get this post's current flaggers
-    self.c.execute("SELECT flags FROM posts WHERE email=?", (email,))
+    self.c.execute("SELECT flags FROM posts WHERE id=?", (post,))
     current_bookmarkers = json.loads(self.c.fetchone()[0])
 
     # If we haven't already flagged this yet with this users, do so
     if email not in current_bookmarkers:
       current_bookmarkers.append(email)
-      self.c.execute("UPDATE posts SET flags=?", (json.dumps(json.dumps(current_bookmarkers)),))
+      self.c.execute("UPDATE posts SET flags=? WHERE id=?", (json.dumps(current_bookmarkers), post))
 
     # Commit
     self.conn.commit()
@@ -115,7 +115,7 @@ class Connection:
     # Fetch all matching posts.
     return self.c.fetchall()
 
-  def search_posts(self, term, limit, timestamp=None, category=None):
+  def search_posts(self, search, limit, timestamp=None, category=None):
     # Make the request to the database (cases with timestamp and category given or not)
     if timestamp is None and category is None:
       self.c.execute("SELECT * FROM posts WHERE unlink!=1 ORDER BY refresh DESC LIMIT ?", (limit,))
@@ -131,11 +131,14 @@ class Connection:
 
     for row in self.c:
       # If this result matches, append it
-      produced_rows.append(row) if search in row[5] else 0
+      produced_rows.append(row) if search in row[6] else 0
 
       # If we have enough results, return
       if len(produced_rows) > limit:
         return produced_rows
+    
+    # If we haven't already, return
+    return produced_rows
 
   
   def post(self, author, category, title, body, image=None):
@@ -149,6 +152,13 @@ class Connection:
     # Update this post
     self.c.execute("UPDATE posts SET title=?, body=?, image=?, refresh=? WHERE id=?", (title, body, image, time.time(), post_id))
   
+    # Commit
+    self.conn.commit()
+
+  def renew(self, post_id):
+    # Renew this post
+    self.c.execute("UPDATE posts SET refresh=? WHERE id=?", (time.time(), post_id))
+    
     # Commit
     self.conn.commit()
 
