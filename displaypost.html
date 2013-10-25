@@ -5,119 +5,122 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>see post</title>
-            <style>
-                .attr_heading{
-                    color: #a50430;
-                    font-weight:bold;
-                    max-width:200px;
-                }
-                #item_pic{
-                    background-color: #a50430;
-                    width:200px;
-                    height:200px;
-                    float:left;
-			margin-bottom:15px;
-                    border:#a50430 2px solid;
-			margin-right:10%;
-                }
-                #content{
-                    width:80%;
-                    margin-top:10px;
-                    margin-left:15%;
-                    }
-                body{
-                     font-family:sans-serif;
-		
-                }
+        <style>
+            .attr_heading{
+                color: #a50430;
+                font-weight:bold;
+                max-width:200px;
+            }
+            #item_pic{
+                background-color: #a50430;
+                width:200px;
+                height:200px;
+                float:left;
+                margin-bottom:15px;
+                border:#a50430 2px solid;
+                margin-right:10%;
+            }
+            #content{
+                min-width:600px;
+                width:80%;
+                margin-top:10px;
+                margin-left:15%;
+            }
+            body{
+                font-family:sans-serif;
                 
-                #post_date{
-                    font-size:10pt;
-                    color:gray;
-                    clear:both;
-                }
+            }
+            
+            #post_date{
+                font-size:10pt;
+                color:gray;
+                clear:left;
+                float:left;
+            }
+            #flag{
+                float:right;
+            }
+            #description{
                 
-                #description{
-		    
-                    clear:both;
-                }
+                clear:both;
+            }
+            
+            
+            .attribute{
+                clear:both;
+                margin-bottom:15px;
                 
+            }
+            h1{
+                margin-left:2%;
+                color: #a50430;
+            }
+            #attr_stack{
+                float:left;
                 
-                .attribute{
-                    clear:both;
-		    margin-bottom:15px;
-				    
-                }
-                h1{
-		    margin-left:2%;
-                    color: #a50430;
-                }
-		#attr_stack{
-			float:left;
-                    
-
-		}
-                </style>
+            }
+            </style>
     </head>
     
     
     <body onload = "fill()">
         <h1>see post</h1>
         <div id = "content">
-		<div id = "attr_stack">
+            <div id = "attr_stack">
                 <div class = "attribute"><span id = "title">N/A</span></div>
                 <div class = "attribute"><span class = "attr_heading">posted by </span><span id = "poster_name">Withheld (Sign in to See Poster)</span></div>
                 <div class = "attribute"><span class = "attr_heading">category </span><span id = "category">N/A</span></div>
                 <div class = "attribute"><span class = "attr_heading">suggested price </span><span id = "price">N/A</span></div>
-		</div>
-                <div class = "attribute"><span class = "attr_heading">description </span><div id = "description">N/A</div></div>
-            <div id = "post_date">Posted on</div>
-
-
+            </div>
+            <div class = "attribute"><span class = "attr_heading">description </span><div id = "description">N/A</div></div>
+            <div id = "post_date">Posted on</div> <input type="button" value="flag post" id="flag"/>
+            
+            
         </div>
-    
-    
-    <script src="third-party/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="third-party/cookies.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="third-party/underscore-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="third-party/backbone-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="app.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        //fill in item's information
-        function fill(){
-            //TODO: get actual post data
-            fill_title("My Title");
-            fill_category("Miscellaneous");
-            fill_descrip("abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz");
-            //TODO: fill_image is only called if there is an image available
-            //fill_image("1 copy.jpg");
-            fill_price("$20-25");
-            fill_date("10/12/13");
-            fill_poster("Mr. Exonian");
-        }
-        function fill_title (newTitle){
-            document.getElementById ("title").innerHTML=newTitle;
-        }
         
-        function fill_poster (newName){
-            document.getElementById ("poster_name").innerHTML=newName;
-        }
-        function fill_category (newCat){
-            document.getElementById ("category").innerHTML=newCat;
-        }
-        function fill_descrip (newDesc){
-            document.getElementById ("description").innerHTML=newDesc;
-        }
-        function fill_image (newImageSrc){
-            document.getElementById("content").innerHTML= "<img id = 'item_pic' alt ='Item Picture'>"+document.getElementById("content").innerHTML;
-            document.getElementById("item_pic").src=newImageSrc;
-        }
-        function fill_price (newPrice){
-            document.getElementById("price").src=newPrice;
-        }
-        function fill_date(newDate){
-            document.getElementById("post_date").innerHTML+= " " +newDate;
-        }
-        //TODO: Only call
-    </script>
+        
+        <script src="third-party/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="third-party/cookies.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="third-party/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="third-party/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            //fill in item's information
+            function fill(){
+                //TODO: get actual post data
+                fill_title("My Title");
+                fill_category("Miscellaneous");
+                fill_descrip("abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz");
+                //TODO: fill_image is only called if there is an image available
+                fill_image("1 copy.jpg");
+                fill_price("$20-25");
+                fill_date("10/12/13");
+                fill_poster("Mr. Exonian");
+            }
+            function fill_title (newTitle){
+                document.getElementById ("title").innerHTML=newTitle;
+            }
+            
+            function fill_poster (newName){
+                document.getElementById ("poster_name").innerHTML=newName;
+            }
+            function fill_category (newCat){
+                document.getElementById ("category").innerHTML=newCat;
+            }
+            function fill_descrip (newDesc){
+                document.getElementById ("description").innerHTML=newDesc;
+            }
+            function fill_image (newImageSrc){
+                document.getElementById("content").innerHTML= "<img id = 'item_pic' alt ='Item Picture'>"+document.getElementById("content").innerHTML;
+                document.getElementById("item_pic").src=newImageSrc;
+            }
+            function fill_price (newPrice){
+                document.getElementById("price").src=newPrice;
+            }
+            function fill_date(newDate){
+                document.getElementById("post_date").innerHTML+= " " +newDate;
+            }
+            //TODO: Only call
+            </script>
     </body>
 </html>
