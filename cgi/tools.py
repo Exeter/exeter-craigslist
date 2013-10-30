@@ -9,7 +9,7 @@ def get_qs_dict():
 
   # Enforce one value per argument
   for key in qwargs:
-    qwargs[key] = d[key][0]
+    qwargs[key] = qwargs[key][0]
 
   return qwargs
 
@@ -17,15 +17,13 @@ class StdinData:
   headers = {}
   data = None
 
-  def __init__(self):
+  def __init__(self, place):
     # Parse headers
     for line in sys.stdin:
       if line == "\n":
         break
       colon = line.index(":")
-      headers[line[:colon].tolower()] = line[colon:] # Lowercase standard
+      self.headers[line[:colon].lower()] = line[colon:] # Lowercase standard
 
     # Remember the file descriptors
     data = place
-
-
