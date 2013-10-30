@@ -5,33 +5,46 @@ body {
 	font-family: sans-serif;
 	margin: 0% 10%;
 	width: 80%;
+	min-width: 640px;
 	min-height: 100%;
 
 	position: relative;
 }
-nav {
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-#account_stuff, #login {
-	display: inline;
-	float: right;
-	margin-top: 10px;
-}
 
-nav li{
-	display: inline;
-	margin: 0% 10px;
-}
-
-
-nav h1 {
+#title {
 	font-family: 'times new roman', times, serif;
 	font-size: 31px;
 	font-weight: 500;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	margin-top: 10px;
 	text-transform: lowercase;
-	display: inline;
 }
+
+#account-area{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: right;
+}
+
+#account-area ul{
+	margin: 0px;
+}
+#account-area li{
+	display: inline;
+	margin: 0px 10px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#content {
+	position: absolute;
+	top: 80px;
+}
+
+
 #about {
 	font-style: italic;
 	text-align: right;
