@@ -55,7 +55,7 @@ $(document).ready(function() {(function(MODE) {
 		},
 	});
 
-	var LoginView = Backbone.View.extend({
+	var UnauthedView = Backbone.View.extend({
 		el: '#account-area',
 		initialize: function() {
 			console.log("loginview initialized!");
@@ -72,13 +72,13 @@ $(document).ready(function() {(function(MODE) {
 			}
 			var success = MODE.get_auth_token(creds);
 			if (success) {
-				this.toAccountView();
+				this.toAuthedView();
 			} else {
 				this.render_fail();
 			}
 		},
-		toAccountView: function() {
-			var accountview = new AccountView();
+		toAuthedView: function() {
+			var authedView = new AuthedView();
 		},
 		render: function() {
 			this.$el.html($("#login-template").html());
@@ -94,7 +94,7 @@ $(document).ready(function() {(function(MODE) {
 		})(),
 	});
 
-	var AccountView = Backbone.View.extend({
+	var AuthedView = Backbone.View.extend({
 		el: '#account-area',
 		initialize: function() {
 			console.log('AccountView initialized');
@@ -112,16 +112,14 @@ $(document).ready(function() {(function(MODE) {
 		},
 	    	new_post: function() {
 			console.log('new post!');
-			alert('new post!');
-			//initialize new_post view
+			newPostView = new NewPostView();
 		},
 		my_posts: function() {
 			console.log('my posts...');
-			alert('my posts...');
-			//initialize my_posts view
+			myPostsView = new MyPostsView();
 		},
 	    	render: function() {
-			console.log('Rendering AccountView');
+			console.log('Rendering AuthedView');
 			this.$el.html($("#account-template").html());
 		}
 	});
@@ -138,6 +136,28 @@ $(document).ready(function() {(function(MODE) {
 		
 	});
 
+	var NewPostView = Backbone.View.extend({
+		el: '#content',
+	        initialize: function() {
+			console.log('NewPostView initialized!');
+			this.render();
+		},
+	    	render: function() {
+			this.$el.html('New post stuff');
+		}
+	});
+
+	var MyPostsView = Backbone.View.extend({
+		el: '#content',
+	        initialize: function() {
+			console.log('MyPostsView initialized!');
+			this.render();
+		},
+	    	render: function() {
+			this.$el.html('My posts');
+		}
+	});
+
 
 	//Main
 	var contentview = new ContentView();
@@ -145,8 +165,8 @@ $(document).ready(function() {(function(MODE) {
 		return !!(Cookies.get('ec_token'));
 	})();
 	if (authenticated){
-		var accountview = new AccountView();
+		var authedView = new AuthedView();
 	} else {
-		var loginview = new LoginView();
+		var unauthedView = new UnauthedView();
 	}
 })(TESTING)});
