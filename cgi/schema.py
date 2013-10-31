@@ -139,7 +139,6 @@ class Connection:
     
     # If we haven't already, return
     return produced_rows
-
   
   def post(self, author, category, title, body, image=None):
     # Create this post
@@ -170,6 +169,13 @@ class Connection:
     
     # Forget about this database connection (as it is now closed)
     self.conn = None
+  
+  def delete(self, post_id):
+    # Soft delete (unlink)
+    self.c.execute("UPDATE posts SET unlink=1 WHERE id=?", (post_id,))
+  
+    # Commit
+    self.conn.commit()
 
   def garbage_collect(self):
     # Issue the command to grab all the rows
