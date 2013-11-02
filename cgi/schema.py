@@ -139,6 +139,11 @@ class Connection:
     
     # If we haven't already, return
     return produced_rows
+
+  def get_post(self, post_id):
+    # Get the requested post
+    self.c.execute("SELECT * FROM posts WHERE unlink!=1 AND id?", (post_id,))
+    return self.c.fetchone()
   
   def post(self, author, category, title, body, image=None):
     # Create this post
@@ -176,6 +181,11 @@ class Connection:
   
     # Commit
     self.conn.commit()
+
+  def checkOwner(self, email, post_id):
+    # Check to see whether this email matches the author column in post_id
+    self.c.execute("SELECT author FROM posts WHERE id=?", (post_id,))
+    return email == self.c.fetchone()[0])
 
   def garbage_collect(self):
     # Issue the command to grab all the rows
