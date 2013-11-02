@@ -202,3 +202,4 @@ class Connection:
 
   def __exit__(self):
     self.close()
+

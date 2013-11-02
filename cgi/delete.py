@@ -12,7 +12,7 @@ if __name__ == "__main__":
   qwargs = tools.get_qs_dict()
 
   # Get header info
-  stdin_data = tools.StdinData(sys.stdin)
+  stdin_data = tools.StdinData()
   
   # Parse cookie info
   cookie = http.cookies.BaseCookie(stdin_data.headers["cookie"])
@@ -25,7 +25,7 @@ if __name__ == "__main__":
   conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
   
   # If they are authenticated, make the post
-  if conn.check(cookie["username"], cookie["sesskey"]):
+  if conn.check(cookie["username"], cookie["sesskey"]) and conn.checkOwner(cookie["username"], int(qwargs["post"])):
     # Post this
     conn.delete(qwargs["post"])
 

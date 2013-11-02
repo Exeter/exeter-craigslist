@@ -24,7 +24,12 @@ if __name__ == "__main__":
   else:
     # Fetch the posts and print them out
     print(json.dumps({
-      "posts": conn.search_posts(qwargs["search"], 10, timestamp = qwargs["timestamp"] if "timestamp" in qwargs else None, category = qwargs["category"] if "category" in qwargs else None)
+      "posts": conn.search_posts(
+                   qwargs["search"],
+                   10,
+                   timestamp = qwargs["timestamp"] if "timestamp" in qwargs else None,
+                   category = qwargs["category"] if "category" in qwargs else None
+               )
     }))
     
     # Close the connection

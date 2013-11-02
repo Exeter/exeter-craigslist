@@ -17,7 +17,7 @@ class StdinData:
   headers = {}
   data = None
 
-  def __init__(self, place):
+  def __init__(self):
     # Parse headers
     for line in sys.stdin:
       if line == "\n":
@@ -26,4 +26,4 @@ class StdinData:
       self.headers[line[:colon].lower()] = line[colon:] # Lowercase standard
 
     # Remember the file descriptors
-    data = place
+    data = sys.stdin 

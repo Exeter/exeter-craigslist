@@ -5,13 +5,14 @@ import http.cookies
 import sqlite3
 import json
 import schema
+import sys
 
 if __name__ == "__main__":
   # Get qs info
   qwargs = tools.get_qs_dict()
 
   # Get header info
-  stdin_data = StdinData()
+  stdin_data = tools.StdinData()
   
   # Parse cookie info
   cookie = http.cookies.BaseCookie(stdin_data.headers["cookie"])

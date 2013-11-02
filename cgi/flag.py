@@ -22,8 +22,6 @@ if __name__ == "__main__":
   # Open the db connection
   conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
   
-  print("Note: email is %s", (cookie["username"],))
-
   # Make sure we have the arguments we need
   if "post" not in qwargs:
     print(json.dumps({
