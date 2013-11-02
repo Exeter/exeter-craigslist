@@ -14,7 +14,7 @@ if __name__ == "__main__":
   print("")
 
   # Open the db connection
-  conn = schema.Connection("craigslist.db")
+  conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
 
   # Fetch the posts and print them out
   print(json.dumps({

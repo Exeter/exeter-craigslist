@@ -21,7 +21,7 @@ if __name__ == "__main__":
   print("")
 
   # Open the db connection
-  conn = Connection("craigslist.db")
+  conn = Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
   
   # If they are authenticated, make the post
   if conn.check(cookie["username"], cookie["sesskey"]):
