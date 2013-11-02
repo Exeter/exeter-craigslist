@@ -185,7 +185,7 @@ class Connection:
   def checkOwner(self, email, post_id):
     # Check to see whether this email matches the author column in post_id
     self.c.execute("SELECT author FROM posts WHERE id=?", (post_id,))
-    return email == self.c.fetchone()[0])
+    return email == self.c.fetchone()[0]
 
   def garbage_collect(self):
     # Issue the command to grab all the rows
