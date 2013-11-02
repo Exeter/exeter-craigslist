@@ -25,7 +25,7 @@ class Connection:
     # Ensure that the tables exist
     c.executescript("""
       CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY ASC, email TEXT, sesskey TEXT);
-      CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY ASC, category TEXT, author TEXT, created INTEGER, refresh INTEGER, title TEXT, body TEXT, image BLOB, flags TEXT, unlink INTEGER);
+      CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY ASC, category TEXT, author TEXT, created INTEGER, refresh INTEGER, title TEXT, body TEXT, image INTEGER, flags TEXT, unlink INTEGER);
       CREATE INDEX IF NOT EXISTS refresh_index ON posts(refresh);
       CREATE INDEX IF NOT EXISTS created_index ON posts(created);
       CREATE INDEX IF NOT EXISTS category_index ON posts(category);

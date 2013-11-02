@@ -1,0 +1,9 @@
+# Exeter Craigslist manifester document
+
+# CGI endpoints
+\/flag /home/dbau/exeter-craigslist/flag.py DYNAMIC
+\/edit /home/dbau/exeter-craigslist/edit.py DYNAMIC
+\/refresh /home/dbau/exeter-craigslist/refresh.py DYNAMIC
+\/post /home/dbau/exeter-craigslist/post.py DYNAMIC
+\/search /home/dbau/exeter-craigslist/search_posts.py DYNAMIC
+\/list /home/dbau/exeter-craigslist/view_posts.py DYNAMIC
