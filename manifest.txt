@@ -1,9 +1,9 @@
 # Exeter Craigslist manifester document
 
 # CGI endpoints
-\/flag /home/daemon/exeter-craigslist/flag.py DYNAMIC
-\/edit /home/daemon/exeter-craigslist/edit.py DYNAMIC
-\/refresh /home/daemon/exeter-craigslist/refresh.py DYNAMIC
-\/post /home/daemon/exeter-craigslist/post.py DYNAMIC
-\/search /home/daemon/exeter-craigslist/search_posts.py DYNAMIC
-\/list /home/daemon/exeter-craigslist/view_posts.py DYNAMIC
+\/craigslist\/flag /home/daemon/exeter-craigslist/flag.py DYNAMIC
+\/craigslist\/edit /home/daemon/exeter-craigslist/edit.py DYNAMIC
+\/craigslist\/refresh /home/daemon/exeter-craigslist/refresh.py DYNAMIC
+\/craigslist\/post /home/daemon/exeter-craigslist/post.py DYNAMIC
+\/craigslist\/search /home/daemon/exeter-craigslist/search_posts.py DYNAMIC
+\/craigslist\/list /home/daemon/exeter-craigslist/view_posts.py DYNAMIC
