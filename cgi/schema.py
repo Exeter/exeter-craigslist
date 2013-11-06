@@ -26,6 +26,10 @@ class Connection:
     c.executescript("""
       CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY ASC, email TEXT, sesskey TEXT);
       CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY ASC, category TEXT, author TEXT, created INTEGER, refresh INTEGER, title TEXT, body TEXT, image INTEGER, flags TEXT, unlink INTEGER);
+      { refresh - time of last renewal
+        image - 1 if there is image, 0 otherwise
+        flags - json list of flaggers' emails
+        unlink - 1 if post has been soft-deleted, 0 otherwise}
       CREATE INDEX IF NOT EXISTS refresh_index ON posts(refresh);
       CREATE INDEX IF NOT EXISTS created_index ON posts(created);
       CREATE INDEX IF NOT EXISTS category_index ON posts(category);
