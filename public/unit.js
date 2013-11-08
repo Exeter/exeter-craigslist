@@ -37,7 +37,7 @@ asyncTest("Search Posts", function() {
   expect(5);
 
   $.ajax({
-    url: "/craigslist/search?search=couch",
+    url: "/craigslist/search?search=sofa",
     datatype: "json",
     success: function(data) {
       //Quick tests
@@ -63,7 +63,7 @@ asyncTest("Search Posts", function() {
       //Test whether the search term appears everywhere
       var searched = true;
       for (var i = 0; i < data.posts.length; i += 1) {
-        searched = searched && (data.posts[i].body.indexOf("couch") >= 0);
+        searched = searched && (data.posts[i].body.indexOf("sofa") >= 0);
       }
       ok(searched, "Search term indeed appears");
       start();

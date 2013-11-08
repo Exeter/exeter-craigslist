@@ -32,14 +32,14 @@ if __name__ == "__main__":
 
     for result in results:
       formatted_results.append({
-        "category": post[1],
-        "author": post[2],
-        "created": post[3],
-        "refreshed": post[4],
-        "title": post[5],
-        "body": post[6],
-        "image": post[7] == 1,
-        "flags": json.loads(post[8]),
+        "category": result[1],
+        "author": result[2],
+        "created": result[3],
+        "refreshed": result[4],
+        "title": result[5],
+        "body": result[6],
+        "image": result[7] == 1,
+        "flags": json.loads(result[8]),
       })
 
     print(json.dumps({"posts":formatted_results}))
