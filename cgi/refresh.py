@@ -22,7 +22,7 @@ if __name__ == "__main__":
   print("")
 
   # Open the db connection
-  conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
+  conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   # Check that they're allowed to renew this post
   if conn.check(cookie["username"], cookie["sesskey"]) and conn.checkOwner(cookie["username"], int(qwargs["post"])):
