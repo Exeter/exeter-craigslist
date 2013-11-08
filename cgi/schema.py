@@ -197,6 +197,14 @@ class Connection:
         # If a post has been flagged too many times, delete it.
         self.c.execute("UPDATE posts SET unlink=1 WHERE posts=?")
 
+  def add_image(self, post_id):
+    # Set the image flag on the given post
+    self.c.execute("UPDATE posts SET image=1 WHERE id=?", post_id)
+
+  def del_image(self, post_id):
+    # Unset the image flag on the given post
+    self.c.execute("UPDATE posts SET image=0 WHERE id=?", post_id)
+
   def __del__(self):
     self.close()
 

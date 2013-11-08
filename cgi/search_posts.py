@@ -16,22 +16,33 @@ if __name__ == "__main__":
   # Open the db connection
   conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
   
-  # Make sure we have the arguments we need
   if "search" not in qwargs:
-    print(json.dumps({
-      "error": "missing argument: 'search'"
-    }))
+    # If we don't have a search term, it's the client's fault.
+    print(json.dumps({"error": "missing argument: 'search'"})
   else:
-    # Fetch the posts and print them out
-    print(json.dumps({
-      "posts": conn.search_posts(
-                   qwargs["search"],
-                   10,
-                   timestamp = qwargs["timestamp"] if "timestamp" in qwargs else None,
-                   category = qwargs["category"] if "category" in qwargs else None
-               )
-    }))
+    # Search for the term we got
+    results = conn.search_posts(
+         qwargs["search"],
+         10,
+         timestamp = qwargs["timestamp"] if "timestamp" in qwargs else None,
+         category = qwargs["category"] if "category" in qwargs else None))
+
+    # Format it nicely
+    formatted_results = []
+
+    for result in results:
+      formatted_results.append({
+        "category": post[1],
+        "author": post[2],
+        "created": post[3],
+        "refreshed": post[4],
+        "title": post[5],
+        "body": post[6],
+        "image": post[7] == 1,
+        "flags": json.loads(post[8]),
+      })
+
+    print(json.dumps({"posts":formatted_results}))
     
     # Close the connection
     conn.close()
-
