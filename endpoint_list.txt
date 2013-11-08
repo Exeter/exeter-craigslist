@@ -1,9 +1,0 @@
- + list without constraints
- + search by content
- + make new post
- + flag post
- + delete post (soft-delete)
- + edit post
- + refresh post
-
- - cron garbage-collect soft deletes into hard
