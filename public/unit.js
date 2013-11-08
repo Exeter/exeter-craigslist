@@ -1,7 +1,9 @@
 /*
   Exeter craigslist unit tests.
 */
-test("View Posts", function() {
+asyncTest("View Posts", function() {
+  expect(4);
+
   $.ajax({
     url: "/craigslist/view_posts",
     datatype: "json",
@@ -10,6 +12,7 @@ test("View Posts", function() {
       ok(data.posts.length === 10, "Length O.K.");
       ok(data.posts[0].hasOwnProperty("title"), "Title O.K.");
       ok(data.posts[0].refreshed > data.posts[1].refreshed, "Tentative ordering O.K.");
+      start();
     }
   });
 });
