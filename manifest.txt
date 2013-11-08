@@ -1,5 +1,9 @@
 # Exeter Craigslist manifester document
 
+# Frontend endpoints
+\/craigslist /home/daemon/exeter-craigslist/public/index.html STATIC
+\/craigslist\/static\/(.*) /home/daemon/exeter-craigslist/public/\1 STATIC
+
 # CGI endpoints
 \/craigslist\/flag /home/daemon/exeter-craigslist/cgi/flag.py DYNAMIC
 \/craigslist\/edit /home/daemon/exeter-craigslist/cgi/edit.py DYNAMIC
@@ -7,3 +11,7 @@
 \/craigslist\/post /home/daemon/exeter-craigslist/cgi/post.py DYNAMIC
 \/craigslist\/search /home/daemon/exeter-craigslist/cgi/search_posts.py DYNAMIC
 \/craigslist\/list /home/daemon/exeter-craigslist/cgi/view_posts.py DYNAMIC
+\/craigslist\/img_upload /home/daemon/exeter-craigslist/cgi/process_image.py DYNAMIC
+
+# Image serving endpoint
+\/craigslist\/image\/\(.*\) /home/daemon/exeter-craigslist/images/\1 STATIC

@@ -6,7 +6,7 @@ import sys
 # Assumes uploaded string follows the following format: 
 # 
 # <data>
-def process():
+if __name__ == "__main__":
   qwargs = tools.get_qs_dict()
   image_list = sys.stdin.readlines()
   image_string = ''.join(str(elem) for elem in image_list)

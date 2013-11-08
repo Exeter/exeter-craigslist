@@ -12,7 +12,7 @@ if __name__ == "__main__":
   qwargs = tools.get_qs_dict()
 
   # Get header info
-  stdin_data = tools.StdinData(sys.stdin)
+  stdin_data = tools.StdinData()
   
   # Parse cookie info
   cookie = http.cookies.BaseCookie(stdin_data.headers["cookie"])
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
   else:
     print(json.dumps({
-      "error": "authentication failed"
+      "error": "authentication failed",
       "success": False
     }))
 
