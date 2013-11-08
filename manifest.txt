@@ -12,6 +12,7 @@
 \/craigslist\/search /home/daemon/projects/exeter-craigslist/cgi/search_posts.py DYNAMIC
 \/craigslist\/list /home/daemon/projects/exeter-craigslist/cgi/view_posts.py DYNAMIC
 \/craigslist\/img_upload /home/daemon/projects/exeter-craigslist/cgi/process_image.py DYNAMIC
+\/craigslist\/authenticate /home/daemon/projects/exeter-craigslist/cgi/dummy_auth.py DYNAMIC
 
 # Image serving endpoint
 \/craigslist\/image\/\(.*\) /home/daemon/projects/exeter-craigslist/images/\1 STATIC
