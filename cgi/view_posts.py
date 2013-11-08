@@ -36,7 +36,7 @@ if __name__ == "__main__":
       "flags": json.loads(post[8]),
     })
 
-  print json.dumps({"posts": formatted_post_list})
+  print(json.dumps({"posts": formatted_post_list}))
   
   # Close the connection
   conn.close()

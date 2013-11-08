@@ -28,6 +28,6 @@ if __name__ == "__main__":
   schema.add_image(int(qwargs["post_id"]))
   
   # If we've gotten here, it was successful.
-  print "Content-type: application/json"
-  print ""
-  print json.dumps({"success": True})
+  print("Content-type: application/json")
+  print("")
+  print(json.dumps({"success": True})
