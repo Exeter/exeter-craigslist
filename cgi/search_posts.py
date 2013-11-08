@@ -14,18 +14,18 @@ if __name__ == "__main__":
   print("")
 
   # Open the db connection
-  conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
+  conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   if "search" not in qwargs:
     # If we don't have a search term, it's the client's fault.
-    print(json.dumps({"error": "missing argument: 'search'"})
+    print(json.dumps({"error": "missing argument: 'search'"}))
   else:
     # Search for the term we got
     results = conn.search_posts(
          qwargs["search"],
          10,
          timestamp = qwargs["timestamp"] if "timestamp" in qwargs else None,
-         category = qwargs["category"] if "category" in qwargs else None))
+         category = qwargs["category"] if "category" in qwargs else None)
 
     # Format it nicely
     formatted_results = []

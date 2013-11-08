@@ -14,7 +14,7 @@ if __name__ == "__main__":
   print("")
 
   # Open the db connection
-  conn = schema.Connection("/home/daemon/exeter-craigslist/cgi/craigslist.db")
+  conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   # Fetch the posts
   post_list = conn.get_posts(10, 
