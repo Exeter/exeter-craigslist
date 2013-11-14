@@ -76,7 +76,7 @@ asyncTest("Login", function() {
   expect(1);
 
   $.ajax({
-    url: "/craigslist/authenticate?username=" + encodeURIComponent("dummy@exeter.edu") + "&password=dummy",
+    url: "/craigslist/authenticate?uname=" + encodeURIComponent("dummy@exeter.edu") + "&password=dummy",
     datatype: "json",
     success: function(data) {
       ok(data.success, "Returned success");
@@ -104,6 +104,7 @@ asyncTest("Create Post", function() {
         datatype: "json",
         success: function(data) {
           ok(data.posts[0].title == "Random Post!", "Found post via search");
+          start();
         }
       });
     }
