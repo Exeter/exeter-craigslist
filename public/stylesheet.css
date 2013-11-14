@@ -57,3 +57,14 @@ body {
 h1, a, li{
 	color: #a50430;
 }
+
+
+/*Add post stuff*/
+#add-post-instructions {
+	float: right;
+
+}
+
+#add-post {
+	display: block;
+}

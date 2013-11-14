@@ -212,7 +212,7 @@ $(document).ready(function() {(function(MODE) {
 			this.render();
 		},
 	    	render: function() {
-			this.$el.html('New post stuff');
+			this.$el.html($("#add-post-template").html());
 		}
 	});
 
