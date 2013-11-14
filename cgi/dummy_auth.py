@@ -1,20 +1,24 @@
+#!/usr/bin/env python
 """
   Dummy authentication endpoint. Username "dummy@exeter.edu" password "dummy" sesskey "dummy"
 """
 import tools
 import urllib
 import schema
+import json
 
 if __name__ == "__main__":
   qwargs = tools.get_qs_dict()
-  if (qwargs["uname"] == "dummy@exeter.edu" and qwargs["passsword"] == "dummy"): # The password just goes over in the clear?
+  conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
+
+  if (qwargs["uname"] == "dummy@exeter.edu" and qwargs["password"] == "dummy"): # The password just goes over in the clear?
     # Login in the database
-    schema.login("dummy@exeter.edu", "dummy")
+    conn.login("dummy@exeter.edu", "dummy")
     
     # Set the client cookie
     print("Content-Type: text/json")
-    print("Set-Cookie: sesskey=%s" % urllib.quote("dummy"))
-    print("Set-Cookie: username=%s" % urllib.quote("dummy@exeter.edu"))
+    print("Set-Cookie: username=%s;" % "dummy@exeter.edu")
+    print("Set-Cookie: sesskey=%s;" % "dummy")
     print("")
 
     # Print success

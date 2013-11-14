@@ -15,15 +15,16 @@ def get_qs_dict():
 
 class StdinData:
   headers = {}
-  data = None
+  data = ""
 
   def __init__(self):
-    # Parse headers
+    # Parse headers, and read out the rest of the file
+    getting_headers = True
     for line in sys.stdin:
-      if line == "\n":
-        break
-      colon = line.index(":")
-      self.headers[line[:colon].lower()] = line[colon:] # Lowercase standard
-
-    # Remember the file descriptors
-    data = sys.stdin 
+      if getting_headers and line == "\n":
+        getting_headers = False
+      if getting_headers:
+        colon = line.index(":")
+        self.headers[line[:colon].lower()] = line[colon+1:] # Lowercase standard
+      else:
+        self.data += line

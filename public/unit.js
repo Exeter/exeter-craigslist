@@ -93,7 +93,7 @@ asyncTest("Create Post", function() {
     method: "POST",
     data: JSON.stringify({
       "title": "Random Post!",
-      "body": "This post is pure white noise. It happesn to look like English by chance.",
+      "body": "This post is pure white noise. It happens to look like English by chance.",
       "category": "random"
     }),
     datatype: "json",

@@ -62,7 +62,7 @@ class Connection:
 
   def login(self, email, sesskey):
     # Check to see if we already have a user record for this email
-    self.c.execute("SELECT EXISTS(SELECT 1 FROM users WHERE email=? LIMIT 1)", (email,))
+    self.c.execute("SELECT EXISTS(SELECT email FROM users WHERE email=? LIMIT 1)", (email,))
     
     if (self.c.fetchone() == 1):
       # If so, update their session key
