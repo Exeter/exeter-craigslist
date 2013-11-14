@@ -71,3 +71,41 @@ asyncTest("Search Posts", function() {
     error: function() { start(); }
   });
 });
+
+asyncTest("Login", function() {
+  expect(1);
+
+  $.ajax({
+    url: "/craigslist/authenticate?username=" + encodeURIComponent("dummy@exeter.edu") + "&password=dummy",
+    datatype: "json",
+    success: function(data) {
+      ok(data.success, "Returned success");
+      start();
+    }
+  });
+});
+
+asyncTest("Create Post", function() {
+  expect(2);
+
+  $.ajax({
+    url: "/craigslist/post",
+    method: "POST",
+    data: JSON.stringify({
+      "title": "Random Post!",
+      "body": "This post is pure white noise. It happesn to look like English by chance.",
+      "category": "random"
+    }),
+    datatype: "json",
+    success: function(data) {
+      ok(data.success, "Server claims success")
+      $.ajax({
+        url: "/craigslist/search?search=pure%20white%20noise",
+        datatype: "json",
+        success: function(data) {
+          ok(data.posts[0].title == "Random Post!", "Found post via search");
+        }
+      });
+    }
+  });
+});
