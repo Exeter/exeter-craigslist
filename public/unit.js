@@ -1,6 +1,8 @@
 /*
   Exeter craigslist unit tests.
 */
+var post_to_delete;
+
 asyncTest("View Posts", function() {
   expect(4);
 
@@ -98,15 +100,28 @@ asyncTest("Create Post", function() {
     }),
     datatype: "json",
     success: function(data) {
-      ok(data.success, "Server claims success")
+      ok(data.success, "Server claims success");
       $.ajax({
         url: "/craigslist/search?search=pure%20white%20noise",
         datatype: "json",
         success: function(data) {
           ok(data.posts[0].title == "Random Post!", "Found post via search");
+          post_to_delete = data.posts[0].id;
           start();
         }
       });
+    }
+  });
+});
+
+asyncTest("Delete Post", function() {
+  expect(1);
+  $.ajax({
+    url: "/craigslist/delete?id=" + post_to_delete,
+    datatype: "json",
+    success: function(data) {
+      ok(data.success, "Server claims success");
+      start();
     }
   });
 });
