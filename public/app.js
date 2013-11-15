@@ -229,13 +229,26 @@ $(document).ready(function() {(function(MODE) {
 
 
 	//Main
-	var contentview = new ContentView();
-	var authenticated = (function() {
-		return !!(Cookies.get('ec_token'));
-	})();
-	if (authenticated){
-		var authedView = new AuthedView();
-	} else {
-		var unauthedView = new UnauthedView();
-	}
+	var mainview = new (Backbone.View.extend({
+		el: 'body',
+		initialize: function() {
+			new ContentView();
+			var authenticated = (function() {
+				return !!(Cookies.get('ec_token'));
+			})();
+
+			if (authenticated){
+				new AuthedView();
+			} else {
+				new UnauthedView();
+			}
+		},
+	    	events: {
+			"click #title": "renderContentView",
+		},
+	    	renderContentView: function() {
+			console.log("shit");
+			new ContentView();
+		}
+	}));
 })(TESTING)});
