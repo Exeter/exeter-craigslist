@@ -201,7 +201,7 @@ $(document).ready(function() {(function(MODE) {
 			this.render();
 		},
 	    	render: function() {
-			this.$el.html('Content Stuff. Later differentiate between authed and unauthed, based on user model');
+			this.$el.html($("#content-template").html());
 		}
 	});
 
@@ -223,7 +223,7 @@ $(document).ready(function() {(function(MODE) {
 			this.render();
 		},
 	    	render: function() {
-			this.$el.html('My posts');
+			this.$el.html($("#my-posts-template").html());
 		}
 	});
 
