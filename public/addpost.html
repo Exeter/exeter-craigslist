@@ -19,24 +19,14 @@
 
       <form id = "add-post" action="" method="post">
 
-        <p>  title </p> 
+        <p style="font-size:20px;"> <b> add title </b> </p> 
 
         <div style="clear:left;">
-          <input type="text" id="add_title" placeholder="add title" />
+          <input type="text" id="add_title" placeholder="title" />
         </div>
-
-        <HR size="2" color="gray">
-
-        <p> price </p> 
-
-        <div style="clear:left;">
-          <input type="text" id="add_price" placeholder="add price" />
-        </div>
-
-      <HR size="2" color="gray">
-
+        
         <div style="float:left; padding-right:30px;">
-          <p> select category </p>
+          <p style="font-size:20px;"> <b> select category </b> </p>
           <select id="categoryList">
             <option value="textbooks">textbooks</option>
             <option value="electronics">electronics</option>
@@ -46,31 +36,25 @@
           </select>
         </div>
 
-        <div style="clear:left; padding-top:2px;">
-          <HR size="2" color="gray">
+        <p style="clear:left; font-size:20px; padding-top:15px;"> <b> add price </b> </p> 
+
+        <div style="clear:left;">
+          <input type="text" id="add_price" placeholder="price" />
         </div>
 
         <div style="clear:left;">
-          <p> upload picture </p>
+          <p style="font-size:20px;"> <b> upload picture </b> </p>
           <input type="hidden" name="MAX_FILE_SIZE" value="500" />
           <input type="file" name="uploadField" />
         </div>
 
-        <div style="clear:left; padding-top:2px;">
-          <HR size="2" color="gray">
-        </div>
-
         <div style="clear:left;">
-          <p> add description </p> 
+          <p style="font-size:20px;"> <b> add description </b> </p> 
           <textarea name="limitedtextarea" rows="5" cols = "50"
                     onKeyPress="return limitChar(this)"
                     onKeyUp="return charLen(this)"></textarea>
           <p>you have <span id="charCount">300</span> characters left.</p>
         </div> 
-
-        <div style="clear:left;">
-          <HR size="2" color="gray">
-        </div>
 
         <div style = "clear:left;">
           <div style="padding-right:5px; float:left;">
