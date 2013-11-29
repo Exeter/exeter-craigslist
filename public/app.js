@@ -183,25 +183,36 @@ $(document).ready(function() {(function(MODE) {
 		},
 	    	new_post: function() {
 			console.log('new post!');
-			newPostView = new NewPostView();
+			_switch_content(NewPostView);
 		},
 		my_posts: function() {
 			console.log('my posts...');
-			myPostsView = new MyPostsView();
+			_switch_content(MyPostsView);
 		},
 	    	render: function() {
 			console.log('Rendering AuthedView');
 			this.$el.html($("#account-template").html());
 		}
 	});
-	var ContentView = Backbone.View.extend({
+
+
+	curr_view = null;
+	function _switch_content(View) {
+		if (View == curr_view) return;
+		$('#content').fadeOut(100, function() { 
+			curr_view = View;
+			new View();
+		}).fadeIn(200);
+	}
+
+	var PostsView = Backbone.View.extend({
 		el: '#content',
 	        initialize: function() {
-			console.log('ContentView initialized!');
+			console.log('PostsView initialized!');
 			this.render();
 		},
 	    	render: function() {
-			this.$el.html($("#content-template").html());
+			this.$el.html($("#posts-template").html());
 		}
 	});
 
@@ -232,7 +243,7 @@ $(document).ready(function() {(function(MODE) {
 	var mainview = new (Backbone.View.extend({
 		el: 'body',
 		initialize: function() {
-			new ContentView();
+			this.renderPostsView();
 			var authenticated = (function() {
 				return !!(Cookies.get('ec_token'));
 			})();
@@ -244,11 +255,10 @@ $(document).ready(function() {(function(MODE) {
 			}
 		},
 	    	events: {
-			"click #title": "renderContentView",
+			"click #title": "renderPostsView",
 		},
-	    	renderContentView: function() {
-			console.log("shit");
-			new ContentView();
+	    	renderPostsView: function() {
+			_switch_content(PostsView);
 		}
 	}));
 })(TESTING)});
