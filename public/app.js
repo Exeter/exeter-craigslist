@@ -211,8 +211,20 @@ $(document).ready(function() {(function(MODE) {
 			console.log('PostsView initialized!');
 			this.render();
 		},
+	   	ListView:  Backbone.View.extend({
+			el: "#posts-content",
+			initialize: function() {
+				this.render();
+			},
+			render: function() {
+				var posts = MODE.get_posts();
+				//Clean up
+				this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
+			}
+		}),
 	    	render: function() {
 			this.$el.html($("#posts-template").html());
+			new this.ListView;
 		}
 	});
 
