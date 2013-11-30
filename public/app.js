@@ -204,7 +204,7 @@ $(document).ready(function() {(function(MODE) {
 
 //PostsView stuff
 //Content Stuff
-	var ContentController = function() {
+	var contentController = new (function() {
 		var views = {
 			PostsView: Backbone.View.extend({
 				el: '#content',
@@ -235,7 +235,11 @@ $(document).ready(function() {(function(MODE) {
 							this.currentView.close();
 						}
 						this.currentView = new views[viewstring];
-						this.currentView.render();
+
+						var that = this;
+						$('#posts-content').fadeOut(100, function() {
+							that.currentView.render();
+						}).fadeIn(200);
 					};
 				})(),
 				renderListPostsView:  function() { this.subviewController.show("ListPostsView")},
@@ -248,38 +252,42 @@ $(document).ready(function() {(function(MODE) {
 					this.subviewController.currentView.close();
 				}
 			}),
+
+
 			NewPostView: Backbone.View.extend({
 				el: '#content',
 				render: function() {
 					this.$el.html($("#add-post-template").html());
 				}
 			}),
+
+
 			MyPostsView: Backbone.View.extend({
 				el: '#content',
 				render: function() {
 					this.$el.html($("#my-posts-template").html());
 				}
 			})
-		}
+		};
+
 		this.show = function(viewstring) {
 			if (this.currentView){
 				this.currentView.close();
 			}
 			this.currentView = new views[viewstring];
-			this.currentView.render();
+			var that = this;
+			$('#content').fadeOut(100, function() {
+				that.currentView.render();
+			}).fadeIn(200);
 		}
 
 
-	}
+	})()
 
-
-
-	var contentController;
 //Main
 	var mainview = new (Backbone.View.extend({
 		el: 'body',
 		initialize: function() {
-			contentController = new ContentController;
 			contentController.show("PostsView");
 			var authenticated = (function() {
 				return !!(Cookies.get('ec_token'));
