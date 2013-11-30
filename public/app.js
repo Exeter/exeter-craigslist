@@ -202,7 +202,6 @@ $(document).ready(function() {(function(MODE) {
 		}
 	});
 
-//PostsView stuff
 //Content Stuff
 	var contentController = new (function() {
 		var views = {
@@ -229,12 +228,14 @@ $(document).ready(function() {(function(MODE) {
 							}
 						}),
 					};
-					this.show = function(viewstring) {
-						console.log('showing' + viewstring);
-						if (this.currentView){
+					this.currentViewString = "ListPostsView"; //abstract out
+					this.show = function(viewstring, override) {
+						if (this.currentView && !override){
+							if (this.currentViewString == viewstring) return;
 							this.currentView.close();
 						}
 						this.currentView = new views[viewstring];
+						this.currentViewString = viewstring;
 
 						var that = this;
 						$('#posts-content').fadeOut(100, function() {
@@ -246,7 +247,7 @@ $(document).ready(function() {(function(MODE) {
 				renderGridPostsView:  function() { this.subviewController.show("GridPostsView")},
 				render: function() {
 					this.$el.html($("#posts-template").html());
-					this.subviewController.show("ListPostsView");
+					this.subviewController.show(this.subviewController.currentViewString, true);
 				},
 				onClose: function() {
 					this.subviewController.currentView.close();
@@ -272,9 +273,11 @@ $(document).ready(function() {(function(MODE) {
 
 		this.show = function(viewstring) {
 			if (this.currentView){
+				if (this.currentViewString == viewstring) return;
 				this.currentView.close();
 			}
 			this.currentView = new views[viewstring];
+			this.currentViewString = viewstring;
 			var that = this;
 			$('#content').fadeOut(100, function() {
 				that.currentView.render();
