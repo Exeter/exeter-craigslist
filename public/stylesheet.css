@@ -1,5 +1,6 @@
 html {
 	height: 100%;
+	overflow: hidden;
 }
 body {
 	font-family: sans-serif;
@@ -42,6 +43,8 @@ body {
 #content {
 	position: absolute;
 	top: 80px;
+	height: calc(100% - 120px);
+	width: 100%;
 }
 
 
@@ -56,4 +59,28 @@ body {
 
 h1, a, li{
 	color: #a50430;
+}
+
+/*Posts stuff*/
+#posts-content {
+	position: absolute;
+	max-height: 100%;
+	max-width: 100%;
+	overflow: auto;
+}
+
+/*Add post stuff*/
+#add-post-instructions {
+	position: fixed;
+	right: 20%;
+	top: 30%;
+	border-style: solid;
+	border-width: 1px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+#add-post div{
+	display: block;
+	margin: 20px 0px;
 }

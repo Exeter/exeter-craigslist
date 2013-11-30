@@ -62,10 +62,8 @@ Add your name here!
 
 
 ##TODO:
- - brainstorm
- - Split up roles
- - How are postings sorted?
-  - Sean suggests some thing like [this](http://www.craigslist.org/about/help/repost)
- - think of catchy, not too corny list
-  - exeter-list
-  - lionslist
+- Front
+ - Add switcher for subviews internally in PostsView
+ - Fix css so scroller is in #content, our about info is always on bottom, header is always on top
+ - Finish list view
+ - Start grid view

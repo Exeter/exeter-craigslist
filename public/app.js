@@ -119,6 +119,13 @@ var PRODUCTION = {
 	}
 };
 
+Backbone.View.prototype.close = function() {
+	this.undelegateEvents();
+	if (this.onClose) {
+		this.onClose();
+	}
+}
+
 
 $(document).ready(function() {(function(MODE) {
 	var User = Backbone.Model.extend({
@@ -183,59 +190,123 @@ $(document).ready(function() {(function(MODE) {
 		},
 	    	new_post: function() {
 			console.log('new post!');
-			newPostView = new NewPostView();
+			contentController.show("NewPostView");
 		},
 		my_posts: function() {
 			console.log('my posts...');
-			myPostsView = new MyPostsView();
+			contentController.show("MyPostsView");
 		},
 	    	render: function() {
 			console.log('Rendering AuthedView');
 			this.$el.html($("#account-template").html());
 		}
 	});
-	var ContentView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			console.log('ContentView initialized!');
-			this.render();
-		},
-	    	render: function() {
-			this.$el.html('Content Stuff. Later differentiate between authed and unauthed, based on user model');
+
+//Content Stuff
+	var contentController = new (function() {
+		var views = {
+			PostsView: Backbone.View.extend({
+				el: '#content',
+				events: {
+					"click #posts-mode-list": "renderListPostsView",
+					"click #posts-mode-grid": "renderGridPostsView"
+				},
+				subviewController: new (function() {
+					var views = {
+						ListPostsView: Backbone.View.extend({
+							el: "#posts-content",
+							render: function() {
+								var posts = MODE.get_posts();
+								//Better method?
+								this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
+							}
+						}),
+						GridPostsView: Backbone.View.extend({
+							el: "#posts-content",
+							render: function() {
+								this.$el.html('TODO: implement GridView');
+							}
+						}),
+					};
+					this.currentViewString = "ListPostsView"; //abstract out
+					this.show = function(viewstring, override) {
+						if (this.currentView && !override){
+							if (this.currentViewString == viewstring) return;
+							this.currentView.close();
+						}
+						this.currentView = new views[viewstring];
+						this.currentViewString = viewstring;
+
+						var that = this;
+						$('#posts-content').fadeOut(100, function() {
+							that.currentView.render();
+						}).fadeIn(200);
+					};
+				})(),
+				renderListPostsView:  function() { this.subviewController.show("ListPostsView")},
+				renderGridPostsView:  function() { this.subviewController.show("GridPostsView")},
+				render: function() {
+					this.$el.html($("#posts-template").html());
+					this.subviewController.show(this.subviewController.currentViewString, true);
+				},
+				onClose: function() {
+					this.subviewController.currentView.close();
+				}
+			}),
+
+
+			NewPostView: Backbone.View.extend({
+				el: '#content',
+				render: function() {
+					this.$el.html($("#add-post-template").html());
+				}
+			}),
+
+
+			MyPostsView: Backbone.View.extend({
+				el: '#content',
+				render: function() {
+					this.$el.html($("#my-posts-template").html());
+				}
+			})
+		};
+
+		this.show = function(viewstring) {
+			if (this.currentView){
+				if (this.currentViewString == viewstring) return;
+				this.currentView.close();
+			}
+			this.currentView = new views[viewstring];
+			this.currentViewString = viewstring;
+			var that = this;
+			$('#content').fadeOut(100, function() {
+				that.currentView.render();
+			}).fadeIn(200);
 		}
-	});
 
-	var NewPostView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			console.log('NewPostView initialized!');
-			this.render();
+
+	})()
+
+//Main
+	var mainview = new (Backbone.View.extend({
+		el: 'body',
+		initialize: function() {
+			contentController.show("PostsView");
+			var authenticated = (function() {
+				return !!(Cookies.get('ec_token'));
+			})();
+
+			if (authenticated){
+				new AuthedView();
+			} else {
+				new UnauthedView();
+			}
 		},
-	    	render: function() {
-			this.$el.html('New post stuff');
-		}
-	});
-
-	var MyPostsView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			console.log('MyPostsView initialized!');
-			this.render();
+	    	events: {
+			"click #title": "renderPostsView",
 		},
-	    	render: function() {
-			this.$el.html('My posts');
+	    	renderPostsView: function() {
+			contentController.show("PostsView");
 		}
-	});
-
-
-	//Main
-	var contentview = new ContentView();
-	var authenticated = (function() {
-		return !!(Cookies.get('ec_token'));
-	})();
-	if (authenticated){
-		var authedView = new AuthedView();
-	} else {
-		var unauthedView = new UnauthedView();
-	}
+	}));
 })(TESTING)});
