@@ -1,5 +1,6 @@
 html {
 	height: 100%;
+	overflow: hidden;
 }
 body {
 	font-family: sans-serif;
@@ -42,6 +43,8 @@ body {
 #content {
 	position: absolute;
 	top: 80px;
+	height: calc(100% - 120px);
+	width: 100%;
 }
 
 
@@ -60,6 +63,10 @@ h1, a, li{
 
 /*Posts stuff*/
 #posts-content {
+	position: absolute;
+	max-height: 100%;
+	max-width: 100%;
+	overflow: auto;
 }
 
 /*Add post stuff*/

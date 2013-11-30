@@ -119,6 +119,13 @@ var PRODUCTION = {
 	}
 };
 
+Backbone.View.prototype.close = function() {
+	this.undelegateEvents();
+	if (this.onClose) {
+		this.onClose();
+	}
+}
+
 
 $(document).ready(function() {(function(MODE) {
 	var User = Backbone.Model.extend({
@@ -183,11 +190,11 @@ $(document).ready(function() {(function(MODE) {
 		},
 	    	new_post: function() {
 			console.log('new post!');
-			new NewPostView;
+			contentController.show("NewPostView");
 		},
 		my_posts: function() {
 			console.log('my posts...');
-			new MyPostsView
+			contentController.show("MyPostsView");
 		},
 	    	render: function() {
 			console.log('Rendering AuthedView');
@@ -195,92 +202,85 @@ $(document).ready(function() {(function(MODE) {
 		}
 	});
 
+//PostsView stuff
 //Content Stuff
-	StateTracker = function() {
-		states = {
-			curr: {},
-			initialize: function(View) {
-				console.log([View.__proto__, states.curr.__proto__]);
-				if (View.__proto__ == states.curr.__proto__) return;
-				View.$el.fadeOut(100, function() { 
-					states.curr = View;
-					View.render();
-				}).fadeIn(200);
+	var ContentController = function() {
+		var views = {
+			PostsView: Backbone.View.extend({
+				el: '#content',
+				events: {
+					"click #posts-mode-list": "renderListPostsView",
+					"click #posts-mode-grid": "renderGridPostsView"
+				},
+				subviewController: new (function() {
+					var views = {
+						ListPostsView: Backbone.View.extend({
+							el: "#posts-content",
+							render: function() {
+								var posts = MODE.get_posts();
+								//Better method?
+								this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
+							}
+						}),
+						GridPostsView: Backbone.View.extend({
+							el: "#posts-content",
+							render: function() {
+								this.$el.html('TODO: implement GridView');
+							}
+						}),
+					};
+					this.show = function(viewstring) {
+						console.log('showing' + viewstring);
+						if (this.currentView){
+							this.currentView.close();
+						}
+						this.currentView = new views[viewstring];
+						this.currentView.render();
+					};
+				})(),
+				renderListPostsView:  function() { this.subviewController.show("ListPostsView")},
+				renderGridPostsView:  function() { this.subviewController.show("GridPostsView")},
+				render: function() {
+					this.$el.html($("#posts-template").html());
+					this.subviewController.show("ListPostsView");
+				},
+				onClose: function() {
+					this.subviewController.currentView.close();
+				}
+			}),
+			NewPostView: Backbone.View.extend({
+				el: '#content',
+				render: function() {
+					this.$el.html($("#add-post-template").html());
+				}
+			}),
+			MyPostsView: Backbone.View.extend({
+				el: '#content',
+				render: function() {
+					this.$el.html($("#my-posts-template").html());
+				}
+			})
+		}
+		this.show = function(viewstring) {
+			if (this.currentView){
+				this.currentView.close();
 			}
+			this.currentView = new views[viewstring];
+			this.currentView.render();
 		}
-		return states;
+
+
 	}
-	Content = StateTracker();
-	PostsContent = StateTracker();
-
-	var PostsView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			Content.initialize(this);
-		},
-	    	events: {
-			"click #posts-mode-list": "renderListView",
-			"click #posts-mode-dummy": "renderDummyView"
-		},
-		renderListView: (function() {
-			var ListView =  Backbone.View.extend({
-				el: "#posts-content",
-				initialize: function() {
-					PostsContent.initialize(this);
-				},
-				render: function() {
-					var posts = MODE.get_posts();
-					//Clean up
-					this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
-				}
-			});
-			return function() { new ListView; };
-		})(),
-		renderGridView: (function() {
-			var GridView = Backbone.View.extend({
-				el: "#posts-content",
-				initialize: function() {
-					PostsContent.initialize(this);
-				},
-				render: function() {
-					this.$el.html('TODO: implement GridView');
-				}
-			});
-			return function() { new GridView; };
-		})(),
-	    	render: function() {
-			this.$el.html($("#posts-template").html());
-			this.renderListView();
-		}
-	});
-
-	var NewPostView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			Content.initialize(this);
-		},
-	    	render: function() {
-			this.$el.html($("#add-post-template").html());
-		}
-	});
-
-	var MyPostsView = Backbone.View.extend({
-		el: '#content',
-	        initialize: function() {
-			Content.initialize(this);
-		},
-	    	render: function() {
-			this.$el.html($("#my-posts-template").html());
-		}
-	});
 
 
 
+	var contentController;
 //Main
 	var mainview = new (Backbone.View.extend({
 		el: 'body',
 		initialize: function() {
-			this.renderPostsView();
+			contentController = new ContentController;
+			contentController.show("PostsView");
 			var authenticated = (function() {
 				return !!(Cookies.get('ec_token'));
 			})();
@@ -295,7 +295,7 @@ $(document).ready(function() {(function(MODE) {
 			"click #title": "renderPostsView",
 		},
 	    	renderPostsView: function() {
-			new PostsView;
+			contentController.show("PostsView");
 		}
 	}));
 })(TESTING)});
