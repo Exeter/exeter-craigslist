@@ -183,11 +183,11 @@ $(document).ready(function() {(function(MODE) {
 		},
 	    	new_post: function() {
 			console.log('new post!');
-			_switch_content(NewPostView);
+			new NewPostView;
 		},
 		my_posts: function() {
 			console.log('my posts...');
-			_switch_content(MyPostsView);
+			new MyPostsView
 		},
 	    	render: function() {
 			console.log('Rendering AuthedView');
@@ -195,44 +195,69 @@ $(document).ready(function() {(function(MODE) {
 		}
 	});
 
-
-	curr_view = null;
-	function _switch_content(View) {
-		if (View == curr_view) return;
-		$('#content').fadeOut(100, function() { 
-			curr_view = View;
-			new View();
-		}).fadeIn(200);
+//Content Stuff
+	StateTracker = function() {
+		states = {
+			curr: {},
+			initialize: function(View) {
+				console.log([View.__proto__, states.curr.__proto__]);
+				if (View.__proto__ == states.curr.__proto__) return;
+				View.$el.fadeOut(100, function() { 
+					states.curr = View;
+					View.render();
+				}).fadeIn(200);
+			}
+		}
+		return states;
 	}
+	Content = StateTracker();
+	PostsContent = StateTracker();
 
 	var PostsView = Backbone.View.extend({
 		el: '#content',
 	        initialize: function() {
-			console.log('PostsView initialized!');
-			this.render();
+			Content.initialize(this);
 		},
-	   	ListView:  Backbone.View.extend({
-			el: "#posts-content",
-			initialize: function() {
-				this.render();
-			},
-			render: function() {
-				var posts = MODE.get_posts();
-				//Clean up
-				this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
-			}
-		}),
+	    	events: {
+			"click #posts-mode-list": "renderListView",
+			"click #posts-mode-dummy": "renderDummyView"
+		},
+		renderListView: (function() {
+			var ListView =  Backbone.View.extend({
+				el: "#posts-content",
+				initialize: function() {
+					PostsContent.initialize(this);
+				},
+				render: function() {
+					var posts = MODE.get_posts();
+					//Clean up
+					this.$el.html('<pre>' + JSON.stringify(posts,undefined, 4) + '</pre>');
+				}
+			});
+			return function() { new ListView; };
+		})(),
+		renderGridView: (function() {
+			var GridView = Backbone.View.extend({
+				el: "#posts-content",
+				initialize: function() {
+					PostsContent.initialize(this);
+				},
+				render: function() {
+					this.$el.html('TODO: implement GridView');
+				}
+			});
+			return function() { new GridView; };
+		})(),
 	    	render: function() {
 			this.$el.html($("#posts-template").html());
-			new this.ListView;
+			this.renderListView();
 		}
 	});
 
 	var NewPostView = Backbone.View.extend({
 		el: '#content',
 	        initialize: function() {
-			console.log('NewPostView initialized!');
-			this.render();
+			Content.initialize(this);
 		},
 	    	render: function() {
 			this.$el.html($("#add-post-template").html());
@@ -242,8 +267,7 @@ $(document).ready(function() {(function(MODE) {
 	var MyPostsView = Backbone.View.extend({
 		el: '#content',
 	        initialize: function() {
-			console.log('MyPostsView initialized!');
-			this.render();
+			Content.initialize(this);
 		},
 	    	render: function() {
 			this.$el.html($("#my-posts-template").html());
@@ -251,7 +275,8 @@ $(document).ready(function() {(function(MODE) {
 	});
 
 
-	//Main
+
+//Main
 	var mainview = new (Backbone.View.extend({
 		el: 'body',
 		initialize: function() {
@@ -270,7 +295,7 @@ $(document).ready(function() {(function(MODE) {
 			"click #title": "renderPostsView",
 		},
 	    	renderPostsView: function() {
-			_switch_content(PostsView);
+			new PostsView;
 		}
 	}));
 })(TESTING)});
