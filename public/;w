@@ -130,7 +130,6 @@ Backbone.View.prototype.close = function() {
 
 
 $(document).ready(function() {(function(MODE) {
-	var router;
 
 	var posts = new Backbone.Collection(MODE.get_posts());
 
@@ -192,7 +191,7 @@ $(document).ready(function() {(function(MODE) {
 			router.navigate("newpost", {trigger: true});
 		},
 		my_posts: function() {
-			router.navigate("myposts", {trigger: true});
+			router.navigate("newpost", {trigger: true});
 		},
 	    	render: function() {
 			console.log('Rendering AuthedView');
@@ -294,7 +293,6 @@ $(document).ready(function() {(function(MODE) {
 		routes: {
 	    		'': "index", 
 			"newpost": "newpost",
-			"myposts": "myposts",
 	    		"*notFound": 'notFound',
 		},
 	    	index: function() {
@@ -303,14 +301,11 @@ $(document).ready(function() {(function(MODE) {
 	    	newpost: function() {
 			contentController.show('NewPostView');
 		},
-	    	myposts: function() {
-			contentController.show('MyPostsView');
-		},
 	    	notFound: function() {
 			console.log("not found...");
 		},
 	});
-	router = new Router;
+	var router = new Router;
 	Backbone.history.start({pushState: true});
 
 //Main
