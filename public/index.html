@@ -37,17 +37,20 @@
 			<a href="https://github.com/Exeter/exeter-craigslist">Github</a>.
 		</div>
 	</body>
-<!--add post-->
+<!--posts-->
 	<script type="text/html" id="posts-template">
 		<button type="button" id="posts-mode-list">List</button>
 		<button type="button" id="posts-mode-grid">Grid</button>
 		<div id="posts-content"></div>
 	</script>
+
+<!--display post-->
 	<script type="text/template" id="post-template">
 		<div id="post-content">
 			<img src="<%= imageurl%>">
 			<h1><%= title %></h1>
 			<p><%= description%></p>
+			<h2><%= price%></h2>
 		</div>
 	</script>
 

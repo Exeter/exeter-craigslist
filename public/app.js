@@ -1,6 +1,14 @@
 /*
  * Where do we verify authentication?
  */
+/*
+ * author
+ * id
+ * title
+ * description
+ * refresh
+ * imageurl
+ */
 
 var TESTING = (function(){
 	var posts = [

@@ -88,10 +88,11 @@ body {
 #posts-content li{
 	padding-top: 10px;
 }
-/*Post stuff*/
+/*Post stuff/ displaypost stuff*/
 #post-content img{
 	max-height: 50%;
 }
+
 
 /*Add post stuff*/
 #add-post-instructions {
