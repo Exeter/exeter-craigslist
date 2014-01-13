@@ -342,7 +342,7 @@ $(document).ready(function() {(function(MODE) {
 		},
 	});
 	router = new Router;
-	Backbone.history.start({pushState: true});
+	Backbone.history.start();
 
 //Main
 	var mainview = new (Backbone.View.extend({
