@@ -3,7 +3,7 @@
 # Frontend endpoints
 \/craigslist\/ /home/daemon/projects/exeter-craigslist/public/index.html STATIC
 \/craigslist /home/daemon/projects/exeter-craigslist/public/redirect.html STATIC
-\/craigslist\/static\/(.*) /home/daemon/projects/exeter-craigslist/public/\1 STATIC
+\/craigslist\/static\/(.*) /home/daemon/projects/exeter-craigslist/public/static/\1 STATIC
 
 # CGI endpoints
 \/craigslist\/flag /home/daemon/projects/exeter-craigslist/cgi/flag.py DYNAMIC
