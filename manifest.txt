@@ -1,7 +1,8 @@
 # Exeter Craigslist manifester document
 
 # Frontend endpoints
-\/craigslist /home/daemon/projects/exeter-craigslist/public/index.html STATIC
+\/craigslist\/ /home/daemon/projects/exeter-craigslist/public/index.html STATIC
+\/craigslist /home/daemon/projects/exeter-craigslist/public/redirect.html STATIC
 \/craigslist\/static\/(.*) /home/daemon/projects/exeter-craigslist/public/\1 STATIC
 
 # CGI endpoints
