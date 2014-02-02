@@ -17,8 +17,8 @@ if __name__ == "__main__":
     
     # Set the client cookie
     print("Content-Type: text/json")
-    print("Set-Cookie: username=%s;" % "dummy@exeter.edu")
-    print("Set-Cookie: sesskey=%s;" % "dummy")
+    print("Set-Cookie: ec_username=%s;" % "dummy@exeter.edu")
+    print("Set-Cookie: ec_sesskey=%s;" % "dummy")
     print("")
 
     # Print success

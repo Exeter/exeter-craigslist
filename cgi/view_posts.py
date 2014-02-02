@@ -26,14 +26,15 @@ if __name__ == "__main__":
   # Format the posts in a quasi-readable json format
   for post in post_list:
     formatted_post_list.append({
+      "id": post[0],
       "category": post[1],
       "author": post[2],
-      "created": post[3],
-      "refreshed": post[4],
+      "date": post[4],
       "title": post[5],
-      "body": post[6],
-      "image": post[7] == 1,
+      "description": post[6],
+      "imageurl": post[7],
       "flags": json.loads(post[8]),
+      "price": post[9]
     })
 
   print(json.dumps({"posts": formatted_post_list}))

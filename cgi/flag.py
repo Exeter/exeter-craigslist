@@ -28,9 +28,9 @@ if __name__ == "__main__":
       "error": "missing argument: 'post'",
       "success": False
     }))
-  elif conn.check(cookie["username"].value, cookie["sesskey"].value):
+  elif conn.check(cookie["ec_username"].value, cookie["ec_sesskey"].value):
     # If they are who they say they are, flag the post
-    conn.flag(cookie["username"].value, int(qwargs["post"]))
+    conn.flag(cookie["ec_username"].value, int(qwargs["post"]))
     print(json.dumps({
       "success": True
     }))

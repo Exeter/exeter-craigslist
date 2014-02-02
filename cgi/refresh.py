@@ -25,7 +25,7 @@ if __name__ == "__main__":
   conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   # Check that they're allowed to renew this post
-  if conn.check(cookie["username"], cookie["sesskey"]) and conn.checkOwner(cookie["username"], int(qwargs["post"])):
+  if conn.check(cookie["ec_username"], cookie["ec_sesskey"]) and conn.checkOwner(cookie["ec_username"], int(qwargs["post"])):
     # Renew it.
     print(json.dumps({
       "success": conn.renew(int(qwargs["post"]))

@@ -25,10 +25,10 @@ if __name__ == "__main__":
   conn = schema.Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   # If they are authenticated, make the post
-  if conn.check(cookie["username"].value, cookie["sesskey"].value):
+  if conn.check(cookie["ec_username"].value, cookie["ec_sesskey"].value):
     # We take post data in json
     post_json = json.loads(stdin_data.data)
-    conn.post(cookie["username"].value, post_json["category"], post_json["title"], post_json["body"])
+    conn.post(cookie["ec_username"].value, post_json["category"], post_json["title"], post_json["body"], post_json["price"], image=post_json["image"])
   
   # If we've gotten this far the post was successful
   print(json.dumps({

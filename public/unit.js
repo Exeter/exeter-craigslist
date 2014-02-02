@@ -15,7 +15,7 @@ asyncTest("View Posts", function() {
       ok(data.posts.length <= 10, "Length at most 10");
       
       //Test specific formatting
-      var desired = ["title", "refreshed", "created", "author", "body", "image"], has_desired = true;
+      var desired = ["title", "refreshed", "created", "author", "body", "image", "id"], has_desired = true;
       for (var i = 0; i < data.posts.length; i += 1) {
         for (var x = 0; x < desired.length; x += 1) {
           has_desired = has_desired && data.posts[i].hasOwnProperty(desired[x]);

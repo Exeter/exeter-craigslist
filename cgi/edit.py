@@ -24,10 +24,10 @@ if __name__ == "__main__":
   conn = Connection("/home/daemon/projects/exeter-craigslist/cgi/craigslist.db")
   
   # If they are authenticated, make the post
-  if conn.check(cookie["username"], cookie["sesskey"]) and conn.checkOwner(cookie["username"], int(qwargs["post"])):
+  if conn.check(cookie["ec_username"], cookie["ec_sesskey"]) and conn.checkOwner(cookie["ec_username"], int(qwargs["post"])):
     # We take post data in json
     post_json = json.load(sys.stdin)
-    conn.edit_post(int(qwargs["post"]), post_json["category"], post_json["title"], post_json["body"])
+    conn.edit_post(int(qwargs["post"]), post_json["category"], post_json["title"], post_json["body"], post_json["price"], image=post_json["image"])
   
     # If we've gotten this far the post was successful
     print(json.dumps({

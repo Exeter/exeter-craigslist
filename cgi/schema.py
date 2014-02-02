@@ -25,7 +25,7 @@ class Connection:
     # Ensure that the tables exist
     c.executescript("""
       CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY ASC, email TEXT, sesskey TEXT);
-      CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY ASC, category TEXT, author TEXT, created INTEGER, refresh INTEGER, title TEXT, body TEXT, image INTEGER, flags TEXT, unlink INTEGER);
+      CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY ASC, category TEXT, author TEXT, created INTEGER, refresh INTEGER, title TEXT, body TEXT, image TEXT, flags TEXT, unlink INTEGER, price TEXT);
       CREATE INDEX IF NOT EXISTS refresh_index ON posts(refresh);
       CREATE INDEX IF NOT EXISTS created_index ON posts(created);
       CREATE INDEX IF NOT EXISTS category_index ON posts(category);
@@ -81,7 +81,6 @@ class Connection:
 
     # Commit
     self.conn.commit()
-
 
   def check(self, email, sesskey):
     # See if (sesskey) matches the one in our database
@@ -145,16 +144,16 @@ class Connection:
     self.c.execute("SELECT * FROM posts WHERE unlink!=1 AND id?", (post_id,))
     return self.c.fetchone()
   
-  def post(self, author, category, title, body, image=None):
+  def post(self, author, category, title, body, price, image=None):
     # Create this post
-    self.c.execute("INSERT INTO posts (author, created, refresh, title, body, category, image, flags, unlink) VALUES (?, ?, ?, ?, ?, ?, ?, '[]', 0)", (author, time.time(), time.time(), title, body, category, image))
+    self.c.execute("INSERT INTO posts (author, created, refresh, title, body, category, image, flags, unlink, price) VALUES (?, ?, ?, ?, ?, ?, ?, '[]', 0, ?)", (author, time.time(), time.time(), title, body, category, image, price))
     
     # Commit
     self.conn.commit()
 
-  def edit_post(self, post_id, title, body, image=None):
+  def edit_post(self, post_id, title, body, price, image=None):
     # Update this post
-    self.c.execute("UPDATE posts SET title=?, body=?, image=?, refresh=? WHERE id=?", (title, body, image, time.time(), post_id))
+    self.c.execute("UPDATE posts SET title=?, body=?, image=?, refresh=?, price=? WHERE id=?", (title, body, image, time.time(), price, post_id))
   
     # Commit
     self.conn.commit()
@@ -197,13 +196,13 @@ class Connection:
         # If a post has been flagged too many times, delete it.
         self.c.execute("UPDATE posts SET unlink=1 WHERE posts=?")
 
-  def add_image(self, post_id):
+  def add_image(self, post_id, image):
     # Set the image flag on the given post
-    self.c.execute("UPDATE posts SET image=1 WHERE id=?", post_id)
+    self.c.execute("UPDATE posts SET image=? WHERE id=?", post_id, image)
 
   def del_image(self, post_id):
     # Unset the image flag on the given post
-    self.c.execute("UPDATE posts SET image=0 WHERE id=?", post_id)
+    self.c.execute("UPDATE posts SET image=null WHERE id=?", post_id)
 
   def __del__(self):
     self.close()
