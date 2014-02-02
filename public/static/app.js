@@ -175,17 +175,17 @@ $(document).ready(function() {(function(MODE) {
             var views = {
               ListPostsView: Backbone.View.extend({
                 el: "#posts-content",
-              render: function() {
-                var list = $("<ul></ul>");
-
-                var that = this;
-                posts.each(function(post) {
-                  var element = $("<li>" + post.get("title") + "</li>");
-                  element.click(function() { router.navigate("viewpost/" + post.id, {trigger: true}); });
-                  list.append(element);
-                });
-                this.$el.html(list);
-              }
+                render: function() {
+                  var table = $("<table width=80%></table>"); 
+                  var headings = $("<tr>" + "<td><b>category</b></td>" + "<td><b>title</b></td>" + "<td><b>author</b></td>" + "<td><b>price</b></td>" + "<tr>"); 
+                  table.append(headings); 
+                  posts.each(function(post) {
+                    var element = $("<tr>" + "<td>" + post.get("category") + "</td>" + "<td>" + post.get("title") + "</td>" +"<td>" + post.get("author") + "</td>" + "<td>" + post.get("price") + "</td>" +  "</tr>");  
+                    element.click(function() { router.navigate("viewpost/" + post.id, {trigger: true}); });
+                    table.append(element); 
+                  });
+                  this.$el.html(table);
+                }
               }),
               GridPostsView: Backbone.View.extend({
                 el: "#posts-content",
@@ -228,9 +228,9 @@ $(document).ready(function() {(function(MODE) {
             this.model = current_post;
             var html = this.model.get("description");
             this.$el.html(this.template(this.model.attributes));
+
           },
         }),
-
 
         NewPostView: Backbone.View.extend({
           el: '#content',
@@ -257,7 +257,6 @@ $(document).ready(function() {(function(MODE) {
           }
         }),
 
-
         MyPostsView: Backbone.View.extend({
           el: '#content',
           render: function() {
@@ -265,7 +264,6 @@ $(document).ready(function() {(function(MODE) {
           }
         })
       };
-
 
       this.show = function(viewstring) {
         if (this.currentView){
@@ -279,8 +277,6 @@ $(document).ready(function() {(function(MODE) {
           that.currentView.render();
         }).fadeIn(200);
       }
-
-
     })()
 
     var Router = Backbone.Router.extend({
