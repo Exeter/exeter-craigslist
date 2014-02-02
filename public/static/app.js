@@ -13,102 +13,26 @@
 var TESTING = (function(){
 	var posts = [
 		{
-			id: 11,
-			title: 'Title',
-			description: "This is my Title! Wanna buy it!",
-			date: "2013-10-14T02:53:50.322Z",
-			category: 'furniture',
-			imageurl: "http://info.infiniteconferencing.com/Portals/98866/images/catchy%20titles-resized-600.png"
-		},
-		{
-			id: 12,
-			title: 'Tittle',
-			description: "This is a tittle!",
-			date: "2013-10-15T02:53:50.322Z",
-			price: "$40",
-			category: 'furniture',
-    			imageurl: "http://www.daniellebaird.net/blog/wp-content/uploads/2010/12/tittle-typography-01.jpg"
-		},
-		{
-			id: 13,
-			title: 'Titttle',
-			description: "This is a titttle!",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$40",
-			category: 'textbooks',
-			imageurl: "http://static.fjcdn.com/pictures/Unique+titttle_11423b_3511365.jpg"
-		},
-		{
-			id: 14,
-			title: 'physics textbook',
-			description: "this reminds me of the worst year of my life, but nothing is written in it and as a matter of fact, it's never really been opened. #physics #textbook #advanced",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$100",
-			category: 'textbooks',
-			imageurl: "http://www.hwscience.com/physics/apphysicsc/SJ%208th%20Ed.jpg"
-
-		},
-		{
-			id: 15,
-			title: 'greek dictionary',
-			description: "by definition, the most useless thing in this century",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$100",
-			category: 'textbooks',
-			imageurl: "http://bibliagora.co.uk/images/P/etymologiko_babiniotis.jpg"
-		},
-		{
-			id: 17,
-			title: 'Extra TI-84',
-			description: "so old you can donate it to a museum. prices according to a priceless relic #calculator #ti84",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$90",
-			category: 'electronics',
-			imageurl: "http://www.ticalc.org/images/calcs/84plus-big.gif"
-		},
-		{
-			id: 18,
-			title: 'TI-84 Plus Silver Edition for sale',
-			description: "don't want it anymore because it is useless for math + science here...but you should buy it anyways! ps missing all its keys pps bateries not included ppps neither is the screen #ti84 #calculator",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$200",
-			category: 'electronics',
-			imageurl: 'http://www.ticalc.org/images/calcs/84plus-se-big.gif'
-		},
-		{
-			id: 19,
-			title: 'loads of graph paper',
-			description: "graph paper (used) but it's good for scratch work i guess #graphpaper",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$5",
-			category: 'supplies',
-			imageurl: 'http://www.northwestern.edu/msa/media/images/stack_of_papers.gif'
-		},
-		{
-			id: 110,
-			title: 'nice hammock',
-			description: "good for spring term. napping. #hammock #furniture ",
-			date: "2013-10-16T02:53:50.322Z",
-			price: "$15",
-			category: 'supplies',
-			imageurl: 'http://www.irunoninsulin.com/wp-content/uploads/2011/11/hammock-between-two-palm-trees-fla517.jpg'
-		},
-		{
+			author: 'dbau',
 			id: 111,
 			title: 'chewed on pencil -- will deliver',
 			description: "warning: i chewed on it, but i cleaned it with hand sanitizer, so it should all be ok. (caution: 2 inches left, ready for compost) #pencil",
-			date: "2013-10-16T02:53:50.322Z",
+    			created: '1384394022.4964797',
+    			refreshed: '1384394122.4964797',
 			price: "$1",
 			category: 'supplies',
 			imageurl: 'http://www.acefitness.org/blogs/images/posts/16/chewedpencil.jpg'
 
 		},
 		{
+			author: 'slee2',
 			id: 112,
 			title: 'leftover food from olas!',
 			description: "las olas leftovers...don't know what it is exactly, but it's green, squishy, and smells like fine cheese. #food #lasolas",
 			date: "2013-10-16T02:53:50.322Z",
 			price: "$0",
+    			created: '1484394022.4964797',
+    			refreshed: '1584394122.4964797',
 			category: 'other',
 			imageurl: 'http://hbh.halfbakedharvest.netdna-cdn.com/wp-content/uploads/2013/04/Chipotle-Steak-Burrito-41.jpg'
 		}
