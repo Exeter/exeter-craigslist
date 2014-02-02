@@ -150,15 +150,15 @@ $(document).ready(function() {(function(MODE) {
             ListPostsView: Backbone.View.extend({
               el: "#posts-content",
               render: function() {
-                var list = $("<ul></ul>");
-
-                var that = this;
+                var table = $("<table width=80%></table>"); 
+                var headings = $("<tr>" + "<td><b>category</b></td>" + "<td><b>title</b></td>" + "<td><b>author</b></td>" + "<td><b>price</b></td>" + "<tr>"); 
+                table.append(headings); 
                 posts.each(function(post) {
-                  var element = $("<li>" + post.get("title") + "</li>");
+                  var element = $("<tr>" + "<td>" + post.get("category") + "</td>" + "<td>" + post.get("title") + "</td>" +"<td>" + post.get("author") + "</td>" + "<td>" + post.get("price") + "</td>" +  "</tr>");  
                   element.click(function() { router.navigate("viewpost/" + post.id, {trigger: true}); });
-                  list.append(element);
+                  table.append(element); 
                 });
-                this.$el.html(list);
+                this.$el.html(table);
               }
             }),
             GridPostsView: Backbone.View.extend({
